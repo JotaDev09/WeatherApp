@@ -110,8 +110,11 @@ body {
 
 /* Today's weather container*/
 .today_weather_container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     position: absolute;
-    width: 176px;
+    width: 225px;
     height: 305px;
     left: 120px;
     top: 106px;
@@ -127,8 +130,36 @@ body {
 
 .today_complete_date {
     display: flex;
-    width: 176px;
+    width: 220px;
     height: 17px;
     line-height: 17px;
     color: #DEDDDD;
+}
+
+.today_weather_img {
+    width: 172px;
+    height: 139px;
+    padding-top: 18px;
+    padding-bottom: 28px;
+}
+
+.today_weather_cont_temperature {
+    width: 109px;
+    height: 80px;
+    padding-bottom: 6px;
+    display: flex;
+}
+
+.today_weater_temperature {
+    width: 96px;
+    height: 80px;
+    font-weight: 600;
+    font-size: 81px;
+    line-height: 80px;
+    color: #FFFFFF;
+}
+
+.today_weather_ellipse {
+    width: 16px;
+    height: 16px;
 }
