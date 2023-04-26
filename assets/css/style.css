@@ -18,6 +18,12 @@ body {
     line-height: 14px;
 }
 
+.flex_column_center {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 /*HOME SCREEN*/
 
 .main_contain {
@@ -110,13 +116,10 @@ body {
 
 /* Today's weather container*/
 .today_weather_container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     position: absolute;
     width: 225px;
     height: 305px;
-    left: 120px;
+    left: 96px;
     top: 106px;
 }
 
@@ -130,7 +133,6 @@ body {
 
 .today_complete_date {
     display: flex;
-    width: 220px;
     height: 17px;
     line-height: 17px;
     color: #DEDDDD;
@@ -162,4 +164,120 @@ body {
 .today_weather_ellipse {
     width: 16px;
     height: 16px;
+}
+
+/* Today's more info container*/
+.more_info_container {
+    position: absolute;
+    width: 295px;
+    height: 95px;
+    left: 61px;
+    top: 430px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: linear-gradient(180deg, #957DCD 0%, #523D7F 100%);
+    border-radius: 8px;
+}
+
+.more_info_precipitation {
+    width: 78px;
+    height: 68px;
+}
+
+.more_info_humidity {
+    width: 56px;
+    height: 68px;
+}
+
+.more_info_wind {
+    width: 73px;
+    height: 68px;
+}
+
+.info_number {
+    line-height: 21px;
+    color: #DEDDDD;
+}
+
+.info_text {
+    line-height: 18px;
+    color: #DEDDDD;
+}
+
+/*Today's different info during the day*/
+.hours_info_container {
+    position: absolute;
+    width: 399px;
+    height: 128px;
+    left: 10px;
+    top: 555px;
+}
+
+.hours_info_text {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hours_info_text {
+    height: 18px;
+    line-height: 18px;
+    color: #DEDDDD;
+}
+
+.hours_info_weather {
+    width: 398px;
+    height: 99px;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 11px;
+}
+
+.hour_weather {
+    width: 58px;
+    height: 99px;
+    background: linear-gradient(180deg, #957DCD 0%, #523D7F 100%);
+    border-radius: 8px;
+    justify-content: center;
+}
+
+.days_hour {
+    height: 18px;
+    line-height: 18px;
+    color: #DEDDDD;
+}
+
+.days_weather {
+    width: 39px;
+    height: 39px;
+    padding-top: 3px;
+    padding-bottom: 10px;
+}
+
+.days_temp_cont {
+    height: 18px;
+    display: flex;
+}
+
+.hours_temp {
+    width: 15px;
+    height: 18px;
+    line-height: 18px;
+    color: #DEDDDD;
+}
+
+.hours_ellipse {
+    width: 2px;
+    height: 2px;
+}
+
+/*Today's other cities temperature*/
+.other_cities_temp {
+    position: absolute;
+    width: 488px;
+    height: 78.05px;
+    left: 15px;
+    top: 713px;
+    background-color: #957DCD;
+    overflow-x: hidden;
 }
