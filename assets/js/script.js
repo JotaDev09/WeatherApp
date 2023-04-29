@@ -27,7 +27,7 @@ const daysNames = [
  */
 function init() {
   getTime();
-  getPosition();
+  //getPosition();
   getCompleteDate();
 }
 
@@ -47,18 +47,18 @@ function getTime() {
 
 /*
  * the function shows location of the user
- */
+ 
 function getPosition() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(getCity);
   } else {
     alert("Geolocation is not supported by this browser.");
   }
-}
+}*/
 
 /*
  * the function looks for the location of the user
- */
+ 
 function getCity(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
@@ -75,7 +75,7 @@ function getCity(position) {
     .catch((error) => {
       alert(error);
     });
-}
+}*/
 
 /*
  * the function refresh the main page

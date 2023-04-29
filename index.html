@@ -70,8 +70,8 @@
         <!--Today's different info during the day-->
         <div class="hours_info_container">
             <div class="hours_info_text">
-                <a class="hours_info_text font_Poppins_12px">Today</a>
-                <a class="hours_info_text font_Poppins_12px">7 Day Forecasts</a>
+                <a class="hours_info_text_a font_Poppins_12px">Today</a>
+                <a class="hours_info_text_a font_Poppins_12px">7 Day Forecasts</a>
             </div>
             <div class="hours_info_weather">
                 <div class="hour_weather flex_column_center">
@@ -125,8 +125,52 @@
             </div>
         </div>
         <!--Today's other cities temperature-->
-        <div class="other_cities_temp"></div>
+        <div class="other_cities_temp">
+            <div class="other_cities_text">
+                <a class="hours_info_text_a font_Poppins_12px">Other Cities</a>
+                <a class="hours_info_text_a font_Poppins_12px">+</a>
+            </div>
+            <div class="other_cities_cont">
+                <div class="new_city">
+                    <img src="/assets/img/cloudy.svg" class="new_city_img">
+                    <div class="new_city_weather">
+                        <p class="new_city_name font_Poppins_14px">Delhi</p>
+                        <p class="new_city_descr font_Poppins_12px">Sunny</p>
+                    </div>
+                    <div class="new_city_temp_cont">
+                        <p class="new_city_temp font_Poppins_12px">9</p>
+                        <img src="/assets/icons/Ellipse.svg" class="new_city_ellipse">
+                    </div>
+                </div>
+                <div class="new_city">
+                    <img src="/assets/img/cloudy.svg" class="new_city_img">
+                    <div class="new_city_weather">
+                        <p class="new_city_name font_Poppins_14px">Delhi</p>
+                        <p class="new_city_descr font_Poppins_12px">Sunny</p>
+                    </div>
+                    <div class="new_city_temp_cont">
+                        <p class="new_city_temp font_Poppins_12px">9</p>
+                        <img src="/assets/icons/Ellipse.svg" class="new_city_ellipse">
+                    </div>
+                </div>
+                <div class="new_city">
+                    <img src="/assets/img/cloudy.svg" class="new_city_img">
+                    <div class="new_city_weather">
+                        <p class="new_city_name font_Poppins_14px">Delhi</p>
+                        <p class="new_city_descr font_Poppins_12px">Sunny</p>
+                    </div>
+                    <div class="new_city_temp_cont">
+                        <p class="new_city_temp font_Poppins_12px">9</p>
+                        <img src="/assets/icons/Ellipse.svg" class="new_city_ellipse">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script src="/assets/js/weatherApi.js" type="module"></script>
+    <!--IMPORTANT!!-->
+    <!--<a href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>-->
 
 </body>
 

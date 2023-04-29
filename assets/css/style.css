@@ -219,7 +219,7 @@ body {
     justify-content: space-between;
 }
 
-.hours_info_text {
+.hours_info_text_a {
     height: 18px;
     line-height: 18px;
     color: #DEDDDD;
@@ -274,10 +274,83 @@ body {
 /*Today's other cities temperature*/
 .other_cities_temp {
     position: absolute;
-    width: 488px;
+    width: 402px;
     height: 78.05px;
     left: 15px;
     top: 713px;
-    background-color: #957DCD;
-    overflow-x: hidden;
+}
+
+.other_cities_text {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 15px;
+    padding-bottom: 10px;
+}
+
+.other_cities_cont::-webkit-scrollbar {
+    display: none;
+}
+
+.other_cities_cont {
+    display: flex;
+    gap: 10px;
+    overflow: scroll;
+}
+
+.new_city {
+    width: 156px;
+    height: 50px;
+    background: linear-gradient(180deg, #957DCD 0%, #523D7F 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.new_city_img {
+    width: 37px;
+    height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.new_city_weather {
+    height: 30px;
+    width: 72px;
+}
+
+.new_city_name {
+    width: 36px;
+    height: 15px;
+    line-height: 15px;
+    color: #FFFFFF;
+    margin: 0;
+    padding-bottom: 5px;
+}
+
+.new_city_descr {
+    width: 32px;
+    height: 13px;
+    font-size: 10px;
+    line-height: 13px;
+    color: #DEDDDD;
+    margin: 0;
+}
+
+.new_city_temp_cont {
+    padding-right: 12px;
+    display: flex;
+}
+
+.new_city_temp {
+    width: 11px;
+    height: 15px;
+    font-size: 16px;
+    line-height: 15px;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.new_city_ellipse {
+    width: 4px;
+    height: 4px;
 }
