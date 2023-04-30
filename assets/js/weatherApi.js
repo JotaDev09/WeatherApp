@@ -36,7 +36,25 @@ function parseCurrentWeather(data) {
   currentWind.textContent = Math.trunc(windspeed) + "km/h";
   currentPrecipitation.textContent = Math.trunc(precipprob) + "%";
   currentHumidity.textContent = Math.trunc(humidity) + "%";
-  renderIcons(data);
+  renderIcons(data.currentConditions.icon);
+}
+
+function renderIcons(icon) {
+  if (icon === "clear-day") {
+    img.src = sunny;
+  } else if (icon === "party-cloudy-day" || "fog" || "wind") {
+    img.src = partlyCloudy;
+  } else if (icon === "cloudy") {
+    img.src = cloudy;
+  } else if (icon === "snow") {
+    img.src = snowy;
+  } else if (icon === "rain") {
+    img.src = rainy;
+  } else if (icon === "partly-cloudy-night") {
+    img.src = cloudyNight;
+  } else if (icon === "clear-night") {
+    img.src = clearNight;
+  }
 }
 
 function parseDailyWeather(data) {
@@ -49,8 +67,7 @@ function parseDailyWeather(data) {
     const [day, month] = dateArray;
     const formattedDate = `${day}/${month}`;
 
-    let nextDayImg = "";
-    renderIconsNextDays(data, i, nextDayImg);
+    let nextDayImg = renderIconsNextDays(data.days[i].icon);
     dailySection.innerHTML += renderNextDays(formattedDate, temp, nextDayImg);
   }
 }
@@ -71,49 +88,29 @@ function renderNextDays(formattedDate, temp, nextDayImg) {
 }
 
 const sunny = "assets/img/sunny.svg";
-const partlyCloudy = "assets/img/cloudy.svg";
+const partlyCloudy = "assets/img/partlyCloudy.svg";
+const cloudy = "assets/img/cloudy.svg";
 const snowy = "assets/img/snow.svg";
-const rainy = "assets/img/rainy.svg";
+const rainy = "assets/img/rainy.png";
 const cloudyNight = "assets/img/cloudyNight.svg";
 const clearNight = "assets/img/night.png";
 
 let img = document.getElementById("todaysIcon");
 
-function renderIcons(data) {
-  if ((data.currentConditions.icon = "clear-day")) {
-    img.src = sunny;
-  } else if (
-    (data.currentConditions.icon =
-      "party-cloudy-day" || "fog" || "wind" || "cloudy")
-  ) {
-    img.src = partlyCloudy;
-  } else if ((data.currentConditions.icon = "snow")) {
-    img.src = snowy;
-  } else if ((data.currentConditions.icon = "rain")) {
-    img.src = rainy;
-  } else if ((data.currentConditions.icon = "partly-cloudy-night")) {
-    img.src = cloudyNight;
-  } else if ((data.currentConditions.icon = "clear-night")) {
-    img.src = clearNight;
-  }
-}
-
-function renderIconsNextDays(data, nextDayImg) {
+function renderIconsNextDays(icon) {
   for (let i = 0; i < 7; i++) {
-    if ((data.days[i].icon = "clear-day")) {
-      nextDayImg = sunny;
-    } else if (
-      (data.days[i].icon = "party-cloudy-day" || "fog" || "wind" || "cloudy")
-    ) {
-      nextDayImg = partlyCloudy;
-    } else if ((data.days[i].icon = "snow")) {
-      nextDayImg = snowy;
-    } else if ((data.days[i].icon = "rain")) {
-      nextDayImg = rainy;
-    } else if ((data.days[i].icon = "partly-cloudy-night")) {
-      nextDayImg = cloudyNight;
-    } else if ((data.days[i].icon = "clear-night")) {
-      nextDayImg = clearNight;
+    if (icon === "clear-day") {
+      return sunny;
+    } else if (icon === "party-cloudy-day" || "fog" || "wind" || "cloudy") {
+      return partlyCloudy;
+    } else if (icon === "snow") {
+      return snowy;
+    } else if (icon === "rain") {
+      return rainy;
+    } else if (icon === "partly-cloudy-night") {
+      return cloudyNight;
+    } else if (icon === "clear-night") {
+      return clearNight;
     }
   }
 }

@@ -27,7 +27,6 @@ const daysNames = [
  */
 function init() {
   getTime();
-  //getPosition();
   getCompleteDate();
 }
 
@@ -92,8 +91,12 @@ function getCompleteDate() {
 
   dayString = daysNames[date.getDay()] + ", " + date.getDate() + " ";
   monthString = monthNames[date.getMonth()] + " " + date.getFullYear() + " | ";
-  hourString = date.getHours() + ":" + date.getMinutes();
+  hourString = date.getHours() + ":";
+  let minutes = date.getMinutes();
+  minutesString =
+    date.getMinutes() < 10 ? "0" + date.getMinutes() : minutes.toString();
 
   let dateContain = document.getElementById("completeDate");
-  dateContain.textContent = dayString + monthString + hourString;
+  dateContain.textContent =
+    dayString + monthString + hourString + minutesString;
 }
