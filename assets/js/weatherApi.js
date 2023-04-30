@@ -1,36 +1,119 @@
-let location = document.getElementById("positionPhone");
+let currentLocation = document.getElementById("positionPhone");
+let currentConditions = document.getElementById("todaysConditions");
+let currentIcon = document.getElementById("todaysIcon");
+let currentTemperature = document.getElementById("todaysTemperature");
+let currentWind = document.getElementById("todaysWind");
+let currentPrecipitation = document.getElementById("todaysPrecipitation");
+let currentHumidity = document.getElementById("todaysHumidity");
+
+const dailySection = document.getElementById("dailyContainer");
+let nextDay = document.getElementById("nextDay");
+let nextDayTemp = document.getElementById("nextDayTemp");
 
 window.addEventListener("load", () => {
   const API_URL =
-    "https://api.open-meteo.com/v1/forecast?latitude=52.45&longitude=13.38&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,precipitation,windspeed_10m&daily=precipitation_hours&timezone=auto";
-
+    "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/berlin?unitGroup=metric&key=SCV2Z3QJQ8V7GHSWSY7MESVNR&contentType=json";
   fetch(API_URL)
     .then((response) => {
       return response.json();
     })
     .then((data) => {
+      currentLocation.textContent = data.timezone.split("/")[1];
       console.log(data);
-      const timezone = data.timezone.split("/")[1];
-      location.textContent = timezone;
+      return {
+        current: parseCurrentWeather(data),
+        daily: parseDailyWeather(data),
+        //hourly: parseHourlyWeather(data),
+      };
     });
 });
-/*
-const API_URL =
-  "https://api.open-meteo.com/v1/forecast?latitude=52.45&longitude=13.38&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,precipitation,windspeed_10m&daily=precipitation_hours&timezone=auto";
-const xhr = new XMLHttpRequest();
 
-function onRequestHandler() {
-  if ((this.readyState === 4) & (this.status === 200)) {
-    const data = JSON.parse(this.response);
-    console.log(data);
+function parseCurrentWeather(data) {
+  const { conditions, temp, windspeed, precipprob, humidity } =
+    data.currentConditions;
+  currentConditions.textContent = conditions;
+  currentTemperature.textContent = Math.trunc(temp);
+  currentWind.textContent = Math.trunc(windspeed) + "km/h";
+  currentPrecipitation.textContent = Math.trunc(precipprob) + "%";
+  currentHumidity.textContent = Math.trunc(humidity) + "%";
+  renderIcons(data);
+}
 
-    const HTMLResponse = document.querySelector("positionPhone");
-    const city = data.map((location) => "<a>${location.timezone}</a>");
-    HTMLResponse.innerHTML = city;
+function parseDailyWeather(data) {
+  dailySection.innerHTML = "";
+  for (let i = 0; i < 7; i++) {
+    const { datetime, temp } = data.days[i];
+
+    // Split the datetime string into an array and reverse it to get year, month, day order
+    const dateArray = datetime.split("-").reverse();
+    const [day, month] = dateArray;
+    const formattedDate = `${day}/${month}`;
+
+    let nextDayImg = "";
+    renderIconsNextDays(data, i, nextDayImg);
+    dailySection.innerHTML += renderNextDays(formattedDate, temp, nextDayImg);
   }
 }
 
-xhr.addEventListener("load", onRequestHandler);
-xhr.open("GET", `${API_URL}`);
-xhr.send();
-*/
+function renderNextDays(formattedDate, temp, nextDayImg) {
+  return `
+  <div class="hour_weather flex_column_center">
+    <a class="days_hour font_Poppins_12px" id="nextDay">${formattedDate}</a>
+    <img src="${nextDayImg}" class="days_weather" id="daysWeather">
+    <div class="days_temp_cont">
+      <a class="days_temp font_Poppins_12px" id="nextDayTemp">${Math.trunc(
+        temp
+      )}</a>
+      <img src="/assets/icons/Ellipse.svg" class="hours_ellipse">
+    </div>
+  </div>
+  `;
+}
+
+const sunny = "assets/img/sunny.svg";
+const partlyCloudy = "assets/img/cloudy.svg";
+const snowy = "assets/img/snow.svg";
+const rainy = "assets/img/rainy.svg";
+const cloudyNight = "assets/img/cloudyNight.svg";
+const clearNight = "assets/img/night.png";
+
+let img = document.getElementById("todaysIcon");
+
+function renderIcons(data) {
+  if ((data.currentConditions.icon = "clear-day")) {
+    img.src = sunny;
+  } else if (
+    (data.currentConditions.icon =
+      "party-cloudy-day" || "fog" || "wind" || "cloudy")
+  ) {
+    img.src = partlyCloudy;
+  } else if ((data.currentConditions.icon = "snow")) {
+    img.src = snowy;
+  } else if ((data.currentConditions.icon = "rain")) {
+    img.src = rainy;
+  } else if ((data.currentConditions.icon = "partly-cloudy-night")) {
+    img.src = cloudyNight;
+  } else if ((data.currentConditions.icon = "clear-night")) {
+    img.src = clearNight;
+  }
+}
+
+function renderIconsNextDays(data, nextDayImg) {
+  for (let i = 0; i < 7; i++) {
+    if ((data.days[i].icon = "clear-day")) {
+      nextDayImg = sunny;
+    } else if (
+      (data.days[i].icon = "party-cloudy-day" || "fog" || "wind" || "cloudy")
+    ) {
+      nextDayImg = partlyCloudy;
+    } else if ((data.days[i].icon = "snow")) {
+      nextDayImg = snowy;
+    } else if ((data.days[i].icon = "rain")) {
+      nextDayImg = rainy;
+    } else if ((data.days[i].icon = "partly-cloudy-night")) {
+      nextDayImg = cloudyNight;
+    } else if ((data.days[i].icon = "clear-night")) {
+      nextDayImg = clearNight;
+    }
+  }
+}

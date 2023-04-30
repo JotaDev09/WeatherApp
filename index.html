@@ -41,10 +41,10 @@
         </div>
         <!--Today's weather main info-->
         <div class="today_weather_container flex_column_center">
-            <a class="weather_description font_Poppins_12px" id="weatherDescription">Mostly Sunny</a>
-            <img class="today_weather_img" src="/assets/img/sunny.svg"></img>
+            <a class="weather_description font_Poppins_12px" id="todaysConditions"></a>
+            <img class="today_weather_img" src="/assets/img/sunny.svg" id="todaysIcon"></img>
             <div class="today_weather_cont_temperature">
-                <a class="today_weater_temperature font_Poppins_12px" id="todaysTemperature">23</a>
+                <a class="today_weater_temperature font_Poppins_12px" id="todaysTemperature"></a>
                 <img src="/assets/icons/Ellipse.svg" class="today_weather_ellipse">
             </div>
             <a class="today_complete_date font_Poppins_12px" id="completeDate"></a>
@@ -53,17 +53,17 @@
         <div class="more_info_container ">
             <div class="more_info_precipitation flex_column_center">
                 <img src="assets/icons/umbrella.svg">
-                <a class="info_number font_Poppins_14px">30%</a>
+                <a class="info_number font_Poppins_14px" id="todaysPrecipitation"></a>
                 <a class="info_text font_Poppins_12px">Precipitation</a>
             </div>
             <div class="more_info_humidity flex_column_center">
                 <img src="assets/icons/water.svg">
-                <a class="info_number font_Poppins_14px">20%</a>
+                <a class="info_number font_Poppins_14px" id="todaysHumidity"></a>
                 <a class="info_text font_Poppins_12px">Humidity</a>
             </div>
             <div class="more_info_wind flex_column_center">
                 <img src="assets/icons/wind.svg">
-                <a class="info_number font_Poppins_14px">9km/h</a>
+                <a class="info_number font_Poppins_14px" id="todaysWind"></a>
                 <a class="info_text font_Poppins_12px">Wind Speed</a>
             </div>
         </div>
@@ -73,55 +73,8 @@
                 <a class="hours_info_text_a font_Poppins_12px">Today</a>
                 <a class="hours_info_text_a font_Poppins_12px">7 Day Forecasts</a>
             </div>
-            <div class="hours_info_weather">
-                <div class="hour_weather flex_column_center">
-                    <a class="days_hour font_Poppins_12px">10 PM</a>
-                    <img src="assets/img/sunny.svg" class="days_weather">
-                    <div class="days_temp_cont">
-                        <a class="hours_temp font_Poppins_12px" id="todaysTemperature">23</a>
-                        <img src="/assets/icons/Ellipse.svg" class="hours_ellipse">
-                    </div>
-                </div>
-                <div class="hour_weather flex_column_center">
-                    <a class="days_hour font_Poppins_12px">10 PM</a>
-                    <img src="assets/img/sunny.svg" class="days_weather">
-                    <div class="days_temp_cont">
-                        <a class="hours_temp font_Poppins_12px" id="todaysTemperature">23</a>
-                        <img src="/assets/icons/Ellipse.svg" class="hours_ellipse">
-                    </div>
-                </div>
-                <div class="hour_weather flex_column_center">
-                    <a class="days_hour font_Poppins_12px">10 PM</a>
-                    <img src="assets/img/sunny.svg" class="days_weather">
-                    <div class="days_temp_cont">
-                        <a class="hours_temp font_Poppins_12px" id="todaysTemperature">23</a>
-                        <img src="/assets/icons/Ellipse.svg" class="hours_ellipse">
-                    </div>
-                </div>
-                <div class="hour_weather flex_column_center">
-                    <a class="days_hour font_Poppins_12px">10 PM</a>
-                    <img src="assets/img/sunny.svg" class="days_weather">
-                    <div class="days_temp_cont">
-                        <a class="hours_temp font_Poppins_12px" id="todaysTemperature">23</a>
-                        <img src="/assets/icons/Ellipse.svg" class="hours_ellipse">
-                    </div>
-                </div>
-                <div class="hour_weather flex_column_center">
-                    <a class="days_hour font_Poppins_12px">10 PM</a>
-                    <img src="assets/img/sunny.svg" class="days_weather">
-                    <div class="days_temp_cont">
-                        <a class="hours_temp font_Poppins_12px" id="todaysTemperature">23</a>
-                        <img src="/assets/icons/Ellipse.svg" class="hours_ellipse">
-                    </div>
-                </div>
-                <div class="hour_weather flex_column_center">
-                    <a class="days_hour font_Poppins_12px">10 PM</a>
-                    <img src="assets/img/sunny.svg" class="days_weather">
-                    <div class="days_temp_cont">
-                        <a class="hours_temp font_Poppins_12px" id="todaysTemperature">23</a>
-                        <img src="/assets/icons/Ellipse.svg" class="hours_ellipse">
-                    </div>
-                </div>
+            <div class="hours_info_weather" id="dailyContainer">
+
             </div>
         </div>
         <!--Today's other cities temperature-->

@@ -124,10 +124,8 @@ body {
 }
 
 .weather_description {
-    width: 82px;
     height: 17px;
     line-height: 17px;
-
     color: #DEDDDD;
 }
 
@@ -146,14 +144,12 @@ body {
 }
 
 .today_weather_cont_temperature {
-    width: 109px;
     height: 80px;
     padding-bottom: 6px;
     display: flex;
 }
 
 .today_weater_temperature {
-    width: 96px;
     height: 80px;
     font-weight: 600;
     font-size: 81px;
@@ -226,11 +222,10 @@ body {
 }
 
 .hours_info_weather {
-    width: 398px;
-    height: 99px;
-    display: flex;
-    justify-content: space-between;
     padding-top: 11px;
+    display: flex;
+    gap: 10px;
+    overflow: scroll;
 }
 
 .hour_weather {
@@ -248,10 +243,12 @@ body {
 }
 
 .days_weather {
-    width: 39px;
+    width: 38px;
     height: 39px;
     padding-top: 3px;
     padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .days_temp_cont {
@@ -259,8 +256,7 @@ body {
     display: flex;
 }
 
-.hours_temp {
-    width: 15px;
+.days_temp {
     height: 18px;
     line-height: 18px;
     color: #DEDDDD;
