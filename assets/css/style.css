@@ -30,7 +30,7 @@ body {
     position: relative;
     width: 417px;
     height: 872px;
-    background: linear-gradient(180deg, #352163 0%, #331972 57.81%, #33143C 100%);
+    background: linear-gradient(to bottom, rgb(42, 42, 121), rgb(115, 208, 238))
 }
 
 /* header */
@@ -77,8 +77,13 @@ body {
 }
 
 .header_left_icon {
-    width: 35px;
+    width: 51px;
     height: 35px;
+}
+
+.logo_icon {
+    width: 50px;
+    height: 34px;
 }
 
 .header_menu {
@@ -109,7 +114,7 @@ body {
     justify-content: center;
     width: 35px;
     height: 35px;
-    background: #6865A5;
+    background: rgba(255, 255, 255, 0.3);
     border-radius: 5px;
     cursor: pointer;
 }
@@ -172,7 +177,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background: linear-gradient(180deg, #957DCD 0%, #523D7F 100%);
+    background: rgba(255, 255, 255, 0.3);
     border-radius: 8px;
 }
 
@@ -193,12 +198,12 @@ body {
 
 .info_number {
     line-height: 21px;
-    color: #DEDDDD;
+    color: white;
 }
 
 .info_text {
     line-height: 18px;
-    color: #DEDDDD;
+    color: white;
 }
 
 /*Today's different info during the day*/
@@ -218,7 +223,7 @@ body {
 .hours_info_text_a {
     height: 18px;
     line-height: 18px;
-    color: #DEDDDD;
+    color: white;
 }
 
 .hours_info_weather {
@@ -231,7 +236,7 @@ body {
 .hour_weather {
     width: 58px;
     height: 99px;
-    background: linear-gradient(180deg, #957DCD 0%, #523D7F 100%);
+    background: rgba(255, 255, 255, 0.3);
     border-radius: 8px;
     justify-content: center;
 }
@@ -239,7 +244,7 @@ body {
 .days_hour {
     height: 18px;
     line-height: 18px;
-    color: #DEDDDD;
+    color: white;
 }
 
 .days_weather {
@@ -259,7 +264,7 @@ body {
 .days_temp {
     height: 18px;
     line-height: 18px;
-    color: #DEDDDD;
+    color: white;
 }
 
 .hours_ellipse {
@@ -296,7 +301,7 @@ body {
 .new_city {
     width: 156px;
     height: 50px;
-    background: linear-gradient(180deg, #957DCD 0%, #523D7F 100%);
+    background: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -318,7 +323,7 @@ body {
     width: 36px;
     height: 15px;
     line-height: 15px;
-    color: #FFFFFF;
+    color: white;
     margin: 0;
     padding-bottom: 5px;
 }
@@ -328,7 +333,7 @@ body {
     height: 13px;
     font-size: 10px;
     line-height: 13px;
-    color: #DEDDDD;
+    color: white;
     margin: 0;
 }
 
@@ -342,7 +347,7 @@ body {
     height: 15px;
     font-size: 16px;
     line-height: 15px;
-    color: #FFFFFF;
+    color: white;
     margin: 0;
 }
 
