@@ -119,6 +119,12 @@ body {
     cursor: pointer;
 }
 
+.sub_header_title {
+    height: 12px;
+    font-size: 18px;
+    color: #FFFFFF;
+}
+
 /* Today's weather container*/
 .today_weather_container {
     position: absolute;

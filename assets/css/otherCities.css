@@ -1,0 +1,101 @@
+.search_city_container {
+    position: absolute;
+    width: 335px;
+    height: 38px;
+    left: 41px;
+    top: 118px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.search_lupe_img {
+    width: 16px;
+    height: 16px;
+    padding-left: 16px;
+    padding-right: 17px;
+}
+
+.input_search_city {
+    width: 250px;
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    line-height: 12px;
+    color: #FFFFFF;
+}
+
+/*Searched Cities*/
+.searched_cities_container {
+    width: 387px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 197px;
+    left: 15px;
+}
+
+.searched_city_cont {
+    width: 387px;
+    height: 114px;
+    display: flex;
+    align-items: center;
+}
+
+.searched_city_info_cont {
+    width: 295px;
+    height: 90px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    display: flex;
+    gap: 65px;
+}
+
+.searched_city_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 34px;
+}
+
+.searched_city_name {
+    height: 12px;
+    font-size: 20px;
+    line-height: 12px;
+    color: #FFFFFF;
+    padding-bottom: 13px;
+}
+
+.searched_city_weather {
+    height: 12px;
+    font-size: 14px;
+    line-height: 12px;
+    color: #FFFFFF;
+    opacity: 0.7;
+}
+
+.searched_city_img {
+    position: absolute;
+    right: 0;
+    width: 140px;
+    height: 133px;
+}
+
+.searched_city_info_cont2 {
+    display: flex;
+    justify-content: center;
+}
+
+.searched_city_temp {
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 80px;
+    color: #FFFFFF;
+}
+
+.searched_city_ellipse {
+    width: 10px;
+    height: 35px;
+}

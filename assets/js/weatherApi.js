@@ -23,7 +23,6 @@ window.addEventListener("load", () => {
       return {
         current: parseCurrentWeather(data),
         daily: parseDailyWeather(data),
-        //hourly: parseHourlyWeather(data),
       };
     });
 });

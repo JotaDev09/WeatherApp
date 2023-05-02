@@ -25,9 +25,11 @@ const daysNames = [
 /*
  * the function init the necesary functions to load the main site.
  */
-function init() {
+function initHome() {
   getTime();
   getCompleteDate();
+  includeHTML();
+  subHeader();
 }
 
 /*
@@ -45,42 +47,45 @@ function getTime() {
 }
 
 /*
- * the function shows location of the user
- 
-function getPosition() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(getCity);
-  } else {
-    alert("Geolocation is not supported by this browser.");
-  }
-}*/
-
-/*
- * the function looks for the location of the user
- 
-function getCity(position) {
-  let latitude = position.coords.latitude;
-  let longitude = position.coords.longitude;
-  let cityPosition = document.getElementById("positionPhone");
-  let apiKey = "cfa328789ed14dfd8d01ec43d7ab6d61"; // replace with your API key
-  fetch(
-    `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      let city = data.results[0].components.city;
-      cityPosition.textContent = `${city}`;
-    })
-    .catch((error) => {
-      alert(error);
-    });
-}*/
-
-/*
  * the function refresh the main page
  */
 function refreshMainPage() {
   window.location.reload();
+}
+
+/*
+ * the function backs to the main page
+ */
+function backToMainPage() {
+  window.location.href = "index.html";
+}
+
+/*
+ * the function backs to the main page
+ */
+function openHome() {
+  window.location.href = "index.html";
+}
+
+/*
+ * the function goes to other cities
+ */
+function openOtherCities() {
+  window.location.href = "otherCities.html";
+}
+
+/*
+ * the function goes to the weather of the location
+ */
+function openZoneWeather() {
+  window.location.href = "zoneWeather.html";
+}
+
+/*
+ * the function goes to others settings
+ */
+function openOthers() {
+  window.location.href = "others.html";
 }
 
 /*
@@ -99,4 +104,47 @@ function getCompleteDate() {
   let dateContain = document.getElementById("completeDate");
   dateContain.textContent =
     dayString + monthString + hourString + minutesString;
+}
+
+function subHeader() {
+  let subHeader = document.getElementById("subHeaderTitle");
+  if (document.location.pathname === "OtherCities") {
+    console.log("title");
+    subHeader.textContent = "Search for City";
+  }
+}
+
+/**
+ * include templates html
+ */
+function includeHTML() {
+  var z, i, elmnt, file, xhttp;
+  /* Loop through a collection of all HTML elements: */
+  z = document.getElementsByTagName("*");
+  for (i = 0; i < z.length; i++) {
+    elmnt = z[i];
+    /*search for elements with a certain atrribute:*/
+    file = elmnt.getAttribute("w3-include-html");
+    if (file) {
+      /* Make an HTTP request using the attribute value as the file name: */
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4) {
+          if (this.status == 200) {
+            elmnt.innerHTML = this.responseText;
+          }
+          if (this.status == 404) {
+            elmnt.innerHTML = "Page not found.";
+          }
+          /* Remove the attribute, and call this function once more: */
+          elmnt.removeAttribute("w3-include-html");
+          includeHTML();
+        }
+      };
+      xhttp.open("GET", file, true);
+      xhttp.send();
+      /* Exit the function: */
+      return;
+    }
+  }
 }

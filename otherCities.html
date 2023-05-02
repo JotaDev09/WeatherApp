@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+
+    <link rel="icon" type="image/icon" href="assets/img/white.png" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+        rel="stylesheet" />
+    <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/otherCities.js"></script>
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/menu.css">
+    <link rel="stylesheet" href="/assets/css/otherCities.css">
+</head>
+
+<body onload="otherCitiesInit(), getTime(), subHeader()">
+    <div class=" main_contain">
+        <!--Header time and settings -->
+        <div class="header_contain">
+            <a class="header_time font_Poppins_12px" id="headerTime"></a>
+            <div class="header_settings">
+                <img class="header_icons" src="/assets/icons/signal.svg" alt="" />
+                <img class="header_icons" src="/assets/icons/wifi.svg" alt="" />
+                <img class="header_icons" src="/assets/icons/batterie.svg" alt="" />
+            </div>
+        </div>
+        <!--Logo icon and return-->
+        <div w3-include-html="subHeader.html"></div>
+        <!--Search other city-->
+        <div class="search_city_container">
+            <img src="assets/icons/lupeSmall.svg" class="search_lupe_img" onclick="searchCity()">
+            <input type="text" class="input_search_city font_Poppins_12px" id="inputSearchCity">
+        </div>
+        <!--Container for searched cities-->
+        <div class="searched_cities_container" id="searchedCitiesContainer">
+            <div class="searched_city_cont">
+                <div class="searched_city_info_cont">
+                    <div class="searched_city_info">
+                        <a class="searched_city_name font_Poppins_14px" id="searchedCityName">Segovia</a>
+                        <a class="searched_city_weather font_Poppins_14px" id="searchedCityWeather">Soleado</a>
+                    </div>
+                    <div class="searched_city_info_cont2">
+                        <a class="searched_city_temp font_Poppins_14px" id="searchedCityTemp">30</a>
+                        <img src="assets/icons/Ellipse.svg" class="searched_city_ellipse">
+                    </div>
+                </div>
+                <img src="assets/img/cloudy.svg" class="searched_city_img" id="searchedCityImg">
+            </div>
+        </div>
+
+
+        <div w3-include-html="assets/templates/menu.html"></div>
+    </div>
+
+</body>
+
+</html>
