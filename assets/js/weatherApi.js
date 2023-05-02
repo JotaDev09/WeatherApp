@@ -9,6 +9,15 @@ let currentHumidity = document.getElementById("todaysHumidity");
 const dailySection = document.getElementById("dailyContainer");
 let nextDay = document.getElementById("nextDay");
 let nextDayTemp = document.getElementById("nextDayTemp");
+let img = document.getElementById("todaysIcon");
+
+const sunny = "assets/img/sunny.svg";
+const partlyCloudy = "assets/img/partlyCloudy.svg";
+const cloudy = "assets/img/cloudy.svg";
+const snowy = "assets/img/snow.svg";
+const rainy = "assets/img/rainy.png";
+const cloudyNight = "assets/img/cloudyNight.svg";
+const clearNight = "assets/img/night.png";
 
 window.addEventListener("load", () => {
   const API_URL =
@@ -18,7 +27,8 @@ window.addEventListener("load", () => {
       return response.json();
     })
     .then((data) => {
-      currentLocation.textContent = data.timezone.split("/")[1];
+      currentLocation.textContent =
+        data.address.charAt(0).toUpperCase() + data.address.slice(1);
       console.log(data);
       return {
         current: parseCurrentWeather(data),
@@ -85,16 +95,6 @@ function renderNextDays(formattedDate, temp, nextDayImg) {
   </div>
   `;
 }
-
-const sunny = "assets/img/sunny.svg";
-const partlyCloudy = "assets/img/partlyCloudy.svg";
-const cloudy = "assets/img/cloudy.svg";
-const snowy = "assets/img/snow.svg";
-const rainy = "assets/img/rainy.png";
-const cloudyNight = "assets/img/cloudyNight.svg";
-const clearNight = "assets/img/night.png";
-
-let img = document.getElementById("todaysIcon");
 
 function renderIconsNextDays(icon) {
   for (let i = 0; i < 7; i++) {

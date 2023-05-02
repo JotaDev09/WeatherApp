@@ -5,6 +5,14 @@ let currentConditionsSearchedCity = document.getElementById(
 let currentTemperatureSearchedCity =
   document.getElementById("searchedCityTemp");
 
+const sunny = "assets/img/sunny.svg";
+const partlyCloudy = "assets/img/partlyCloudy.svg";
+const cloudy = "assets/img/cloudy.svg";
+const snowy = "assets/img/snow.svg";
+const rainy = "assets/img/rainy.png";
+const cloudyNight = "assets/img/cloudyNight.svg";
+const clearNight = "assets/img/night.png";
+
 function otherCitiesInit() {
   includeHTML();
   UpperCase();
@@ -31,7 +39,6 @@ function searchCity() {
       return response.json();
     })
     .then((data) => {
-      searchedNewCity.textContent = data.timezone.split("/")[1];
       console.log(data);
       return {
         searchedCity: parseCurrentsearchedCity(data),
@@ -45,10 +52,66 @@ function searchCity() {
 }
 
 function parseCurrentsearchedCity(data) {
-  //const timezone = data;
-  const { icon, temp } = data.currentConditions;
-  currentConditionsSearchedCity.textContent = icon;
-  currentTemperatureSearchedCity.textContent = temp;
+  const newCity = document.getElementById("searchedCitiesContainer");
+  newCity.innerHTML = "";
+
+  const { conditions, temp } = data.currentConditions;
+  const city = data.address;
+  const conditionsCity = conditions;
+  const temperatureCity = Math.round(((temp - 32) * 5) / 9);
+
+  const iconWeather = renderIcons(data.currentConditions.icon);
+  newCity.innerHTML += renderNewCity(
+    city,
+    conditionsCity,
+    temperatureCity,
+    iconWeather
+  );
+}
+
+function renderNewCity(city, conditionsCity, temperatureCity, iconWeather) {
+  const iconImageUrl = renderIcons(iconWeather);
+  return `
+    <div class="searched_city_cont">
+      <div class="searched_city_info_cont">
+          <div class="searched_city_info">
+              <a class="searched_city_name font_Poppins_14px" id="searchedCityName">${city}</a>
+              <a class="searched_city_weather font_Poppins_14px" id="searchedCityWeather">${conditionsCity}</a>
+          </div>
+          <div class="searched_city_info_cont2">
+              <a class="searched_city_temp font_Poppins_14px" id="searchedCityTemp">${temperatureCity}</a>
+              <img src="assets/icons/Ellipse.svg" class="searched_city_ellipse">
+          </div>
+      </div>
+      <img class="searched_city_img" id="searchedCityImg" src="${iconImageUrl}" alt="${conditionsCity} icon">
+    </div>
+  `;
+}
+
+function renderIcons(icon) {
+  //let img = document.getElementById("searchedCityImg");
+  if (icon === "clear-day") {
+    //   img.src = sunny;
+    return sunny;
+  } else if (icon === "party-cloudy-day" || "fog" || "wind") {
+    //   img.src = partlyCloudy;
+    return partlyCloudy;
+  } else if (icon === "cloudy") {
+    //   img.src = cloudy;
+    return cloudy;
+  } else if (icon === "snow") {
+    //   img.src = snowy;
+    return snowy;
+  } else if (icon === "rain") {
+    //   img.src = rainy;
+    return rainy;
+  } else if (icon === "partly-cloudy-night") {
+    //   img.src = cloudyNight;
+    return cloudyNight;
+  } else if (icon === "clear-night") {
+    //   img.src = clearNight;
+    return clearNight;
+  }
 }
 
 /**
