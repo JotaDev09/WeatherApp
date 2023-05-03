@@ -14,7 +14,7 @@ let img = document.getElementById("todaysIcon");
 
 //variables of weather images
 const sunny = "assets/img/sunny.svg";
-const partCloudy = "assets/img/.png";
+const partCloudy = "assets/img/partCloudy.png";
 const cloudy = "assets/img/cloudy.svg";
 const snowy = "assets/img/snow.svg";
 const rainy = "assets/img/rainy.png";
@@ -69,7 +69,7 @@ function renderIcons(iconCurrentDay) {
   if (iconCurrentDay === "clear-day") {
     return sunny;
   } else if (
-    iconCurrentDay === "party-cloudy-day" ||
+    iconCurrentDay === "partly-cloudy-day" ||
     iconCurrentDay === "wind"
   ) {
     return partCloudy;
@@ -118,7 +118,7 @@ function renderIconsNextDays(iconWeather) {
   for (let i = 0; i < 7; i++) {
     if (iconWeather === "clear-day") {
       return sunny;
-    } else if (iconWeather === "party-cloudy-day" || iconWeather === "wind") {
+    } else if (iconWeather === "partly-cloudy-day" || iconWeather === "wind") {
       return partCloudy;
     } else if (iconWeather === "cloudy" || iconWeather === "fog") {
       return cloudy;

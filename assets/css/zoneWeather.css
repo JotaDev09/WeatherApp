@@ -1,0 +1,104 @@
+.conditions_7days_container {
+    position: absolute;
+    width: 387px;
+    height: 255px;
+    left: 15px;
+    top: 118px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.conditions_up {
+    height: 153px;
+    display: flex;
+}
+
+.conditios_up_img {
+    width: 169px;
+    height: 132px;
+    padding-left: 21px;
+    padding-left: 36px;
+    padding-top: 6px;
+}
+
+.conditions_up_temp {
+    height: 106px;
+    padding-top: 20px;
+}
+
+.conditions_temp_big {
+    font-size: 55px;
+    line-height: 80px;
+    color: #FFFFFF;
+}
+
+.conditions_ellipse_big {
+    width: 10px;
+    height: 10px;
+    padding-bottom: 35px;
+}
+
+.conditions_line {
+    width: 15px;
+    position: relative;
+    top: 10px;
+    left: -6px;
+}
+
+.conditions_temp_small {
+    font-size: 25px;
+    line-height: 80px;
+    color: #FFFFFF;
+    position: relative;
+    top: 14px;
+}
+
+.conditions_ellipse_small {
+    width: 8px;
+    height: 8px;
+}
+
+.conditions_down {
+    height: 102px;
+}
+
+/* Today's more info container*/
+.more_info_container {
+    position: absolute;
+    width: 295px;
+    height: 95px;
+    left: 61px;
+    top: 430px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+}
+
+.more_info_precipitation {
+    width: 78px;
+    height: 68px;
+}
+
+.more_info_humidity {
+    width: 56px;
+    height: 68px;
+}
+
+.more_info_wind {
+    width: 73px;
+    height: 68px;
+}
+
+.info_number {
+    line-height: 21px;
+    color: white;
+}
+
+.info_text {
+    line-height: 18px;
+    color: white;
+}

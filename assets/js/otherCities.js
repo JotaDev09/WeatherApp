@@ -62,7 +62,7 @@ function searchCity() {
 function renderIcons(iconWeather) {
   if (iconWeather === "clear-day") {
     return sunny;
-  } else if (iconWeather === "party-cloudy-day" || iconWeather === "wind") {
+  } else if (iconWeather === "partly-cloudy-day" || iconWeather === "wind") {
     return partlyCloudy;
   } else if (iconWeather === "cloudy" || iconWeather === "fog") {
     return cloudy;
@@ -135,39 +135,4 @@ function renderNewCity(city, conditionsCity, temperatureCity, iconWeather) {
       <img class="searched_city_img" id="searchedCityImg" src="${iconWeather}" alt="${conditionsCity} icon">
     </div>
   `;
-}
-
-/**
- * include templates html
- */
-function includeHTML() {
-  var z, i, elmnt, file, xhttp;
-  /* Loop through a collection of all HTML elements: */
-  z = document.getElementsByTagName("*");
-  for (i = 0; i < z.length; i++) {
-    elmnt = z[i];
-    /*search for elements with a certain atrribute:*/
-    file = elmnt.getAttribute("w3-include-html");
-    if (file) {
-      /* Make an HTTP request using the attribute value as the file name: */
-      xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function () {
-        if (this.readyState == 4) {
-          if (this.status == 200) {
-            elmnt.innerHTML = this.responseText;
-          }
-          if (this.status == 404) {
-            elmnt.innerHTML = "Page not found.";
-          }
-          /* Remove the attribute, and call this function once more: */
-          elmnt.removeAttribute("w3-include-html");
-          includeHTML();
-        }
-      };
-      xhttp.open("GET", file, true);
-      xhttp.send();
-      /* Exit the function: */
-      return;
-    }
-  }
 }

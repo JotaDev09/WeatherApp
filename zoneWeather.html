@@ -13,13 +13,16 @@
         rel="stylesheet" />
     <script src="/assets/js/script.js"></script>
     <script src="/assets/js/otherCities.js"></script>
+    <script src="/assets/js/includeHtml.js"></script>
+    <script src="/assets/js/zoneWeather.js"></script>
 
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/menu.css">
+    <link rel="stylesheet" href="/assets/css/zoneWeather.css">
 </head>
 
-<body onload="otherCitiesInit(), getTime(), subHeader()">
-    <div class="main_contain">
+<body onload="initZone()">
+    <div class=" main_contain">
         <!--Header time and settings -->
         <div class="header_contain">
             <a class="header_time font_Poppins_12px" id="headerTime"></a>
@@ -31,8 +34,43 @@
         </div>
         <!--Logo icon and return-->
         <div w3-include-html="subHeader.html"></div>
+        <!--7 Days weather-->
+        <div class="conditions_7days_container">
+            <div class="conditions_up">
+                <img src="assets/img/sunny.svg" class="conditios_up_img">
+                <div class="conditions_up_temp">
+                    <a class="conditions_temp_big font_Poppins_14px">23</a>
+                    <img src="assets/icons/Ellipse.svg" class="conditions_ellipse_big">
+                    <img src="assets/icons/LineWhite.svg" class="conditions_line">
+                    <a class="conditions_temp_small font_Poppins_14px">17</a>
+                    <img src="assets/icons/Ellipse.svg" class="conditions_ellipse_small">
+                </div>
+            </div>
 
-        <div w3-include-html="assets/templates/menu.html"></div>
+            <!--Today's characteristics of the weather-->
+            <div class="more_info_container ">
+                <div class="more_info_precipitation flex_column_center">
+                    <img src="assets/icons/umbrella.svg">
+                    <a class="info_number font_Poppins_14px" id="todaysPrecipitation"></a>
+                    <a class="info_text font_Poppins_12px">Precipitation</a>
+                </div>
+                <div class="more_info_humidity flex_column_center">
+                    <img src="assets/icons/water.svg">
+                    <a class="info_number font_Poppins_14px" id="todaysHumidity"></a>
+                    <a class="info_text font_Poppins_12px">Humidity</a>
+                </div>
+                <div class="more_info_wind flex_column_center">
+                    <img src="assets/icons/wind.svg">
+                    <a class="todaysWind info_number font_Poppins_14px" id="todaysWind"></a>
+                    <a class="info_text font_Poppins_12px">Wind Speed</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div w3-include-html="assets/templates/menu.html">
+
+        </div>
     </div>
 
 </body>
