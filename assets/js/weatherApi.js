@@ -1,3 +1,4 @@
+//variables of the html document
 let currentLocation = document.getElementById("positionPhone");
 let currentConditions = document.getElementById("todaysConditions");
 let currentIcon = document.getElementById("todaysIcon");
@@ -11,14 +12,18 @@ let nextDay = document.getElementById("nextDay");
 let nextDayTemp = document.getElementById("nextDayTemp");
 let img = document.getElementById("todaysIcon");
 
+//variables of weather images
 const sunny = "assets/img/sunny.svg";
-const partlyCloudy = "assets/img/partlyCloudy.svg";
+const partCloudy = "assets/img/.png";
 const cloudy = "assets/img/cloudy.svg";
 const snowy = "assets/img/snow.svg";
 const rainy = "assets/img/rainy.png";
 const cloudyNight = "assets/img/cloudyNight.svg";
 const clearNight = "assets/img/night.png";
 
+/*
+ * the function load the forecast of the current location
+ */
 window.addEventListener("load", () => {
   const API_URL =
     "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/berlin?unitGroup=metric&key=SCV2Z3QJQ8V7GHSWSY7MESVNR&contentType=json";
@@ -37,6 +42,11 @@ window.addEventListener("load", () => {
     });
 });
 
+/**
+ * the function render the info of the forecast in the current location
+ *  *
+ * @param {data} - take the info of user's location
+ */
 function parseCurrentWeather(data) {
   const { conditions, temp, windspeed, precipprob, humidity } =
     data.currentConditions;
@@ -45,27 +55,42 @@ function parseCurrentWeather(data) {
   currentWind.textContent = Math.trunc(windspeed) + "km/h";
   currentPrecipitation.textContent = Math.trunc(precipprob) + "%";
   currentHumidity.textContent = Math.trunc(humidity) + "%";
-  renderIcons(data.currentConditions.icon);
+  const imgCurrentDay = renderIcons(data.currentConditions.icon);
+  const currentDayImg = document.getElementById("todaysIcon");
+  currentDayImg.src = imgCurrentDay;
 }
 
-function renderIcons(icon) {
-  if (icon === "clear-day") {
-    img.src = sunny;
-  } else if (icon === "party-cloudy-day" || "fog" || "wind") {
-    img.src = partlyCloudy;
-  } else if (icon === "cloudy") {
-    img.src = cloudy;
-  } else if (icon === "snow") {
-    img.src = snowy;
-  } else if (icon === "rain") {
-    img.src = rainy;
-  } else if (icon === "partly-cloudy-night") {
-    img.src = cloudyNight;
-  } else if (icon === "clear-night") {
-    img.src = clearNight;
+/**
+ * the function render the icons of the current location of the user
+ *  *
+ * @param {iconCurrentDay} - take the element in the html document to give the image
+ */
+function renderIcons(iconCurrentDay) {
+  if (iconCurrentDay === "clear-day") {
+    return sunny;
+  } else if (
+    iconCurrentDay === "party-cloudy-day" ||
+    iconCurrentDay === "wind"
+  ) {
+    return partCloudy;
+  } else if (iconCurrentDay === "cloudy" || iconCurrentDay === "fog") {
+    return cloudy;
+  } else if (iconCurrentDay === "snow") {
+    return snowy;
+  } else if (iconCurrentDay === "rain") {
+    return rainy;
+  } else if (iconCurrentDay === "partly-cloudy-night") {
+    return cloudyNight;
+  } else if (iconCurrentDay === "clear-night") {
+    return clearNight;
   }
 }
 
+/**
+ * the function render the day'sinfo of the forecast in the current location
+ *  *
+ * @param {data} - take the day'sinfo of user's location
+ */
 function parseDailyWeather(data) {
   dailySection.innerHTML = "";
   for (let i = 0; i < 7; i++) {
@@ -76,16 +101,51 @@ function parseDailyWeather(data) {
     const [day, month] = dateArray;
     const formattedDate = `${day}/${month}`;
 
-    let nextDayImg = renderIconsNextDays(data.days[i].icon);
-    dailySection.innerHTML += renderNextDays(formattedDate, temp, nextDayImg);
+    const iconDayImg = renderIconsNextDays(data.days[i].icon);
+    dailySection.innerHTML += renderNextDays(formattedDate, temp, iconDayImg);
+
+    const nextDayImg = document.getElementById("daysWeather");
+    nextDayImg.src = iconDayImg;
   }
 }
 
-function renderNextDays(formattedDate, temp, nextDayImg) {
+/**
+ * the function render the icons of the current location of the user for the next 6 days
+ *  *
+ * @param {iconWeather} - take the element in the html document to give the image
+ */
+function renderIconsNextDays(iconWeather) {
+  for (let i = 0; i < 7; i++) {
+    if (iconWeather === "clear-day") {
+      return sunny;
+    } else if (iconWeather === "party-cloudy-day" || iconWeather === "wind") {
+      return partCloudy;
+    } else if (iconWeather === "cloudy" || iconWeather === "fog") {
+      return cloudy;
+    } else if (iconWeather === "snow") {
+      return snowy;
+    } else if (iconWeather === "rain") {
+      return rainy;
+    } else if (iconWeather === "partly-cloudy-night") {
+      return cloudyNight;
+    } else if (iconWeather === "clear-night") {
+      return clearNight;
+    }
+  }
+}
+
+/**
+ * the function render the info and the icons of the weather for the next 6 days in the current location
+ *  *
+ * @param {formattedDate} - take the element in the html document to give the exact date
+ * @param {temp} - take the element in the html document to give the temperature
+ * @param {iconDayImg} - take the element in the html document to give the image
+ */
+function renderNextDays(formattedDate, temp, iconDayImg) {
   return `
   <div class="hour_weather flex_column_center">
     <a class="days_hour font_Poppins_12px" id="nextDay">${formattedDate}</a>
-    <img src="${nextDayImg}" class="days_weather" id="daysWeather">
+    <img src="${iconDayImg}" class="days_weather" id="daysWeather">
     <div class="days_temp_cont">
       <a class="days_temp font_Poppins_12px" id="nextDayTemp">${Math.trunc(
         temp
@@ -94,22 +154,4 @@ function renderNextDays(formattedDate, temp, nextDayImg) {
     </div>
   </div>
   `;
-}
-
-function renderIconsNextDays(icon) {
-  for (let i = 0; i < 7; i++) {
-    if (icon === "clear-day") {
-      return sunny;
-    } else if (icon === "party-cloudy-day" || "fog" || "wind" || "cloudy") {
-      return partlyCloudy;
-    } else if (icon === "snow") {
-      return snowy;
-    } else if (icon === "rain") {
-      return rainy;
-    } else if (icon === "partly-cloudy-night") {
-      return cloudyNight;
-    } else if (icon === "clear-night") {
-      return clearNight;
-    }
-  }
 }

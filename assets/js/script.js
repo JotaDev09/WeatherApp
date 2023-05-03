@@ -1,3 +1,4 @@
+//array with the months of the year
 const monthNames = [
   "January",
   "February",
@@ -12,6 +13,8 @@ const monthNames = [
   "November",
   "December",
 ];
+
+//array with the week's days
 const daysNames = [
   "Sunday",
   "Monday",

@@ -1,23 +1,23 @@
-let searchedNewCity = document.getElementById("searchedCityName");
-let currentConditionsSearchedCity = document.getElementById(
-  "searchedCityWeather"
-);
-let currentTemperatureSearchedCity =
-  document.getElementById("searchedCityTemp");
-
+//variables of weather images
 const sunny = "assets/img/sunny.svg";
-const partlyCloudy = "assets/img/partlyCloudy.svg";
+const partlyCloudy = "assets/img/partCloudy.png";
 const cloudy = "assets/img/cloudy.svg";
 const snowy = "assets/img/snow.svg";
 const rainy = "assets/img/rainy.png";
 const cloudyNight = "assets/img/cloudyNight.svg";
 const clearNight = "assets/img/night.png";
 
+/*
+ * the function init the necesary functions to load the otherCities site.
+ */
 function otherCitiesInit() {
   includeHTML();
   UpperCase();
 }
 
+/*
+ * the function creates the first upper case letter in the search box.
+ */
 function UpperCase() {
   const input = document.getElementById("inputSearchCity");
 
@@ -27,6 +27,9 @@ function UpperCase() {
   });
 }
 
+/*
+ * the function searchs the wish city of the user
+ */
 function searchCity() {
   const newCity = document.getElementById("inputSearchCity").value;
   const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${newCity}?include=fcst%2Cobs%2Chistfcst%2Cstats%2Cdays%2Chours%2Ccurrent%2Calerts&key=SCV2Z3QJQ8V7GHSWSY7MESVNR&options=beta&contentType=json`;
@@ -51,13 +54,41 @@ function searchCity() {
   newCity.value = "";
 }
 
+/**
+ * the function render the icons of the wished city of the user
+ *  *
+ * @param {iconWeather} - take the element in the html document to give the image
+ */
+function renderIcons(iconWeather) {
+  if (iconWeather === "clear-day") {
+    return sunny;
+  } else if (iconWeather === "party-cloudy-day" || iconWeather === "wind") {
+    return partlyCloudy;
+  } else if (iconWeather === "cloudy" || iconWeather === "fog") {
+    return cloudy;
+  } else if (iconWeather === "snow") {
+    return snowy;
+  } else if (iconWeather === "rain") {
+    return rainy;
+  } else if (iconWeather === "partly-cloudy-night") {
+    return cloudyNight;
+  } else if (iconWeather === "clear-night") {
+    return clearNight;
+  }
+}
+
+/**
+ * the function render the info of the forecast
+ *  *
+ * @param {data} - take the info of the user's wished city
+ */
 function parseCurrentsearchedCity(data) {
   const newCity = document.getElementById("searchedCitiesContainer");
   newCity.innerHTML = "";
 
-  const { conditions, temp } = data.currentConditions;
+  const { icon, temp } = data.currentConditions;
   const city = data.address;
-  const conditionsCity = conditions;
+  const conditionsCity = icon;
   const temperatureCity = Math.round(((temp - 32) * 5) / 9);
 
   const iconWeather = renderIcons(data.currentConditions.icon);
@@ -67,10 +98,20 @@ function parseCurrentsearchedCity(data) {
     temperatureCity,
     iconWeather
   );
+
+  const searchedCityImg = document.getElementById("searchedCityImg");
+  searchedCityImg.src = iconWeather;
 }
 
+/**
+ * the function render the info and the icons of the weather in the wished city
+ *  *
+ * @param {city} - take the element in the html document to give the image
+ * @param {conditionsCity} - take the element in the html document to give the image
+ * @param {temperatureCity} - take the element in the html document to give the image
+ * @param {iconWeather} - take the element in the html document to give the image
+ */
 function renderNewCity(city, conditionsCity, temperatureCity, iconWeather) {
-  const iconImageUrl = renderIcons(iconWeather);
   return `
     <div class="searched_city_cont">
       <div class="searched_city_info_cont">
@@ -83,35 +124,9 @@ function renderNewCity(city, conditionsCity, temperatureCity, iconWeather) {
               <img src="assets/icons/Ellipse.svg" class="searched_city_ellipse">
           </div>
       </div>
-      <img class="searched_city_img" id="searchedCityImg" src="${iconImageUrl}" alt="${conditionsCity} icon">
+      <img class="searched_city_img" id="searchedCityImg" src="${iconWeather}" alt="${conditionsCity} icon">
     </div>
   `;
-}
-
-function renderIcons(icon) {
-  //let img = document.getElementById("searchedCityImg");
-  if (icon === "clear-day") {
-    //   img.src = sunny;
-    return sunny;
-  } else if (icon === "party-cloudy-day" || "fog" || "wind") {
-    //   img.src = partlyCloudy;
-    return partlyCloudy;
-  } else if (icon === "cloudy") {
-    //   img.src = cloudy;
-    return cloudy;
-  } else if (icon === "snow") {
-    //   img.src = snowy;
-    return snowy;
-  } else if (icon === "rain") {
-    //   img.src = rainy;
-    return rainy;
-  } else if (icon === "partly-cloudy-night") {
-    //   img.src = cloudyNight;
-    return cloudyNight;
-  } else if (icon === "clear-night") {
-    //   img.src = clearNight;
-    return clearNight;
-  }
 }
 
 /**
