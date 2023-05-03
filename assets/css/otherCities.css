@@ -30,11 +30,18 @@
 /*Searched Cities*/
 .searched_cities_container {
     width: 387px;
+    height: 600px;
     display: flex;
     flex-direction: column;
     position: absolute;
     top: 197px;
     left: 15px;
+    overflow: scroll;
+    gap: 15px;
+}
+
+.searched_cities_container::-webkit-scrollbar {
+    display: none;
 }
 
 .searched_city_cont {
@@ -81,7 +88,7 @@
     position: absolute;
     right: 0;
     width: 140px;
-    height: 133px;
+    height: 120px;
 }
 
 .searched_city_info_cont2 {

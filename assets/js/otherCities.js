@@ -7,6 +7,8 @@ const rainy = "assets/img/rainy.png";
 const cloudyNight = "assets/img/cloudyNight.svg";
 const clearNight = "assets/img/night.png";
 
+let searchedCities = [];
+
 /*
  * the function init the necesary functions to load the otherCities site.
  */
@@ -50,8 +52,6 @@ function searchCity() {
     .catch((err) => {
       console.error(err);
     });
-
-  newCity.value = "";
 }
 
 /**
@@ -84,23 +84,31 @@ function renderIcons(iconWeather) {
  */
 function parseCurrentsearchedCity(data) {
   const newCity = document.getElementById("searchedCitiesContainer");
-  newCity.innerHTML = "";
-
   const { icon, temp } = data.currentConditions;
   const city = data.address;
   const conditionsCity = icon;
   const temperatureCity = Math.round(((temp - 32) * 5) / 9);
-
   const iconWeather = renderIcons(data.currentConditions.icon);
-  newCity.innerHTML += renderNewCity(
+
+  searchedCities.push({
     city,
     conditionsCity,
     temperatureCity,
-    iconWeather
-  );
+    iconWeather,
+  });
 
-  const searchedCityImg = document.getElementById("searchedCityImg");
-  searchedCityImg.src = iconWeather;
+  newCity.innerHTML = "";
+
+  searchedCities.forEach((city) => {
+    newCity.innerHTML += renderNewCity(
+      city.city,
+      city.conditionsCity,
+      city.temperatureCity,
+      city.iconWeather
+    );
+  });
+
+  document.getElementById("inputSearchCity").value = "";
 }
 
 /**
