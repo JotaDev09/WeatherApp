@@ -1,3 +1,7 @@
+.menu_back2 {
+    background: rgba(255, 255, 255, 0.3);
+}
+
 .search_city_container {
     position: absolute;
     width: 335px;

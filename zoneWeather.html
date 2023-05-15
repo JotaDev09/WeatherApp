@@ -12,7 +12,6 @@
         href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
         rel="stylesheet" />
     <script src="/assets/js/script.js"></script>
-    <script src="/assets/js/otherCities.js"></script>
     <script src="/assets/js/includeHtml.js"></script>
     <script src="/assets/js/zoneWeather.js"></script>
 
@@ -37,34 +36,38 @@
         <!--7 Days weather-->
         <div class="conditions_7days_container">
             <div class="conditions_up">
-                <img src="assets/img/sunny.svg" class="conditios_up_img">
+                <img class="conditios_up_img" id="zoneIcon">
                 <div class="conditions_up_temp">
-                    <a class="conditions_temp_big font_Poppins_14px">23</a>
+                    <a class="conditions_temp_big font_Poppins_14px" id="zoneTemperatureMax"></a>
                     <img src="assets/icons/Ellipse.svg" class="conditions_ellipse_big">
                     <img src="assets/icons/LineWhite.svg" class="conditions_line">
-                    <a class="conditions_temp_small font_Poppins_14px">17</a>
+                    <a class="conditions_temp_small font_Poppins_14px" id="zoneTemperatureMin"></a>
                     <img src="assets/icons/Ellipse.svg" class="conditions_ellipse_small">
                 </div>
             </div>
 
             <!--Today's characteristics of the weather-->
-            <div class="more_info_container ">
+            <div class="more_info_container_zone">
                 <div class="more_info_precipitation flex_column_center">
                     <img src="assets/icons/umbrella.svg">
-                    <a class="info_number font_Poppins_14px" id="todaysPrecipitation"></a>
-                    <a class="info_text font_Poppins_12px">Precipitation</a>
+                    <a class="info_number font_Poppins_14px" id="zonePrecipitation"></a>
+                    <a class="info_text font_Poppins_12px todaysPrecipitation">Precipitation</a>
                 </div>
                 <div class="more_info_humidity flex_column_center">
                     <img src="assets/icons/water.svg">
-                    <a class="info_number font_Poppins_14px" id="todaysHumidity"></a>
+                    <a class="info_number font_Poppins_14px" id="zoneHumidity"></a>
                     <a class="info_text font_Poppins_12px">Humidity</a>
                 </div>
                 <div class="more_info_wind flex_column_center">
                     <img src="assets/icons/wind.svg">
-                    <a class="todaysWind info_number font_Poppins_14px" id="todaysWind"></a>
+                    <a class="todaysWind info_number font_Poppins_14px" id="zoneWind"></a>
                     <a class="info_text font_Poppins_12px">Wind Speed</a>
                 </div>
             </div>
+        </div>
+
+        <!--Today's hourly weather-->
+        <div class="hourly_weather_cont" id="hourlyWeather">
 
         </div>
 

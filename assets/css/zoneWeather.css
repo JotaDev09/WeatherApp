@@ -1,3 +1,7 @@
+.menu_back3 {
+    background: rgba(255, 255, 255, 0.3);
+}
+
 .conditions_7days_container {
     position: absolute;
     width: 387px;
@@ -8,6 +12,7 @@
     border-radius: 15px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .conditions_up {
@@ -18,8 +23,6 @@
 .conditios_up_img {
     width: 169px;
     height: 132px;
-    padding-left: 21px;
-    padding-left: 36px;
     padding-top: 6px;
 }
 
@@ -65,16 +68,12 @@
 }
 
 /* Today's more info container*/
-.more_info_container {
-    position: absolute;
+.more_info_container_zone {
     width: 295px;
     height: 95px;
-    left: 61px;
-    top: 430px;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background: rgba(255, 255, 255, 0.3);
     border-radius: 8px;
 }
 
@@ -101,4 +100,62 @@
 .info_text {
     line-height: 18px;
     color: white;
+}
+
+/*Today's hourly weather*/
+
+.hourly_weather_cont {
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    top: 412px;
+}
+
+.hourly_weather {
+    width: 390px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.hourly_hour {
+    height: 24px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+    padding-left: 15px;
+    padding-right: 40px;
+}
+
+.hourly_icon {
+    width: 51px;
+    height: 40px;
+    padding-right: 6px;
+}
+
+.hourly_conditions {
+    width: 165px;
+    height: 21px;
+    line-height: 21px;
+    color: #FFFFFF;
+    opacity: 0.6;
+    padding-right: 10px;
+}
+
+.hourly_temperature {
+    display: flex;
+    padding-right: 22px;
+}
+
+.hourly_temp {
+    height: 24px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+.hourly_ellipse {
+    width: 6px;
+    height: 6px;
 }

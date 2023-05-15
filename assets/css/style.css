@@ -24,6 +24,10 @@ body {
     flex-direction: column;
 }
 
+.menu_back1 {
+    background: rgba(255, 255, 255, 0.3);
+}
+
 /*HOME SCREEN*/
 
 .main_contain {
