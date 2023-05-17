@@ -16,7 +16,7 @@ function initZone() {
  */
 window.addEventListener("load", () => {
   const API_URL =
-    "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/berlin?unitGroup=metric&include=hours%2Ccurrent&key=SCV2Z3QJQ8V7GHSWSY7MESVNR&contentType=json";
+    "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/berlin?unitGroup=metric&include=current%2Chours&key=SCV2Z3QJQ8V7GHSWSY7MESVNR&contentType=json";
   fetch(API_URL)
     .then((response) => {
       return response.json();
@@ -28,7 +28,7 @@ window.addEventListener("load", () => {
       return {
         //current: parseCurrentWeather(data),
         zone: parseZoneWeather(data),
-        hourly: parsehourlyWeather(data),
+        hourly: parseHourlyWeather(data),
       };
     });
 });
@@ -81,27 +81,39 @@ function renderIcons(iconCurrentDay) {
   }
 }
 
-function parsehourlyWeather(data) {
-  const actualHour = parseInt(data.currentConditions.datetime.slice(11, 13));
+function parseHourlyWeather(data) {
   const hourlySection = document.getElementById("hourlyWeather");
   hourlySection.innerHTML = "";
-  for (let i = 1; i < 9; i++) {
-    const { datetime, conditions, temp, precipprob } = data.days[0].hours[i];
-    const hour = parseInt(datetime.slice(11, 13));
-    if (hour > actualHour) {
-      const iconHourImg = renderIcons(data.days[0].hours[i].icon);
-      hourlySection.innerHTML += renderNextHours(
-        datetime.slice(11, 13) + "h",
-        iconHourImg,
-        conditions,
-        temp,
-        precipprob + "%"
-      );
 
-      const nextHourImg = document.getElementById("hourlyIcon");
-      nextHourImg.src = iconHourImg;
-      break; // Stop looping after printing data for the next hour
+  const hoursToShow = 7; // Número de horas a mostrar
+  const totalHours = data.days[0].hours.length;
+  const currentHour = new Date().getHours();
+  let startIndex = currentHour + 1; // Índice de inicio a partir de la siguiente hora actual
+  let endIndex = startIndex + hoursToShow; // Índice final
+
+  // Ajustar el índice final si se cruza al día siguiente
+  if (endIndex > totalHours) {
+    endIndex = endIndex % totalHours;
+  }
+
+  for (let i = startIndex; i !== endIndex; i++) {
+    if (i >= totalHours) {
+      i = 0; // Reiniciar el índice al comienzo del día siguiente
     }
+
+    const { datetime, conditions, temp, precipprob } = data.days[0].hours[i];
+
+    const iconHourImg = renderIcons(data.days[0].hours[i].icon);
+    hourlySection.innerHTML += renderNextHours(
+      datetime.slice(0, 2) + "h",
+      iconHourImg,
+      conditions,
+      Math.trunc(temp),
+      Math.trunc(precipprob) + "%"
+    );
+
+    const nextHourImg = document.getElementById("hourlyIcon");
+    nextHourImg.src = iconHourImg;
   }
 }
 

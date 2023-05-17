@@ -22,15 +22,42 @@ const cloudyNight = "assets/img/cloudyNight.svg";
 const clearNight = "assets/img/night.png";
 
 /*
+ * the function searchs the current location of the user
+ */
+function showLocation(position) {
+  const latitude = position.coords.latitude;
+  const longitude = position.coords.longitude;
+
+  const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${latitude},${longitude}`;
+
+  const params = {
+    unitGroup: "metric",
+    key: "SCV2Z3QJQ8V7GHSWSY7MESVNR",
+  };
+
+  const queryParams = new URLSearchParams(params);
+
+  fetch(`${url}?${queryParams}`)
+    .then((response) => response.json())
+    .then((data) => {
+      const cityName = data.timezone.split("/")[1];
+      console.log("Ciudad:", cityName);
+
+      fetchWeatherData(cityName);
+    })
+    .catch((error) => {
+      console.log("Error al obtener la información de ubicación:", error);
+    });
+}
+
+/*
  * the function load the forecast of the current location
  */
-window.addEventListener("load", () => {
-  const API_URL =
-    "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/berlin?unitGroup=metric&key=SCV2Z3QJQ8V7GHSWSY7MESVNR&contentType=json";
+function fetchWeatherData(cityName) {
+  const API_URL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${cityName}?unitGroup=metric&key=SCV2Z3QJQ8V7GHSWSY7MESVNR&contentType=json`;
+
   fetch(API_URL)
-    .then((response) => {
-      return response.json();
-    })
+    .then((response) => response.json())
     .then((data) => {
       currentLocation.textContent =
         data.address.charAt(0).toUpperCase() + data.address.slice(1);
@@ -40,6 +67,19 @@ window.addEventListener("load", () => {
         daily: parseDailyWeather(data),
       };
     });
+}
+
+/*
+ * the function gets the current position of the user
+ */
+window.addEventListener("load", () => {
+  const geoLocation = navigator.geolocation;
+
+  if (geoLocation) {
+    geoLocation.getCurrentPosition(showLocation);
+  } else {
+    console.log("La geolocalización no está disponible en este navegador.");
+  }
 });
 
 /**
