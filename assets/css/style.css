@@ -112,6 +112,10 @@
     overflow: scroll;
 }
 
+.hours_info_weather::-webkit-scrollbar {
+    display: none;
+}
+
 .hour_weather {
     width: 58px;
     height: 99px;

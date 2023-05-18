@@ -1,0 +1,21 @@
+@media (max-width:375px) {
+    .conditions_7days_container {
+        width: 345px;
+        height: 230px;
+        top: 105px;
+    }
+
+    .hourly_weather {
+        width: 352px;
+    }
+
+    .hourly_hour {
+        padding-left: 8px;
+        padding-right: 20px;
+    }
+
+    .hourly_temperature {
+        padding-right: 13px;
+    }
+
+}

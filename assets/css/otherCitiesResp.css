@@ -1,0 +1,36 @@
+@media (max-width:375px) {
+    .search_city_container {
+        left: 20px;
+    }
+
+    .searched_cities_container {
+        width: 350px;
+        height: 550px;
+    }
+
+    .searched_city_cont {
+        width: 350px;
+    }
+
+    .searched_city_img {
+        width: 130px;
+        height: 108px;
+    }
+
+    .plus_minus_cont {
+        width: 18px;
+        height: 18px;
+    }
+
+    .remove_city {
+        font-size: 23px;
+    }
+
+    .searched_city_info {
+        padding-left: 7px;
+    }
+
+    .searched_city_temp {
+        font-size: 45px;
+    }
+}

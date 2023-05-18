@@ -1,0 +1,15 @@
+@media (max-width:375px) {
+    .main_contain {
+        width: 375px;
+        height: 812px;
+    }
+
+    .header_contain {
+        width: 357px;
+    }
+
+    .header_position {
+        width: 357px;
+        top: 50px;
+    }
+}

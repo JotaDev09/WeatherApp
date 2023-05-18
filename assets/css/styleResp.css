@@ -1,0 +1,32 @@
+@media (max-width:375px) {
+    .today_weather_container {
+        left: 75px;
+        top: 96px;
+    }
+
+    .today_weather_img {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 167px;
+        height: 134px;
+    }
+
+    .more_info_container {
+        left: 40px;
+        top: 390px;
+    }
+
+    .hours_info_container {
+        top: 510px;
+        width: 364px;
+    }
+
+    .hours_info_text_a {
+        padding-right: 10px;
+    }
+
+    .other_cities_temp {
+        top: 660px;
+        width: 359px;
+    }
+}
