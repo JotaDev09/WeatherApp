@@ -8,29 +8,63 @@ const cloudyNight = "assets/img/cloudyNight.svg";
 const clearNight = "assets/img/night.png";
 
 function initZone() {
-  getTime(), subHeader(), includeHTML();
+  getTime(), includeHTML();
+}
+
+/*
+ * the function searchs the current location of the user
+ */
+function showLocation(position) {
+  const latitude = position.coords.latitude;
+  const longitude = position.coords.longitude;
+
+  const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${latitude},${longitude}`;
+
+  const params = {
+    unitGroup: "metric",
+    key: "SCV2Z3QJQ8V7GHSWSY7MESVNR",
+  };
+
+  const queryParams = new URLSearchParams(params);
+
+  fetch(`${url}?${queryParams}`)
+    .then((response) => response.json())
+    .then((data) => {
+      const cityName = data.timezone.split("/")[1];
+      fetchWeatherData(cityName);
+    })
+    .catch((error) => {
+      console.log("Error retrieving location information:", error);
+    });
 }
 
 /*
  * the function load the forecast of the current location
  */
-window.addEventListener("load", () => {
-  const API_URL =
-    "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/berlin?unitGroup=metric&include=current%2Chours&key=SCV2Z3QJQ8V7GHSWSY7MESVNR&contentType=json";
+function fetchWeatherData(cityName) {
+  const API_URL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${cityName}?unitGroup=metric&key=SCV2Z3QJQ8V7GHSWSY7MESVNR&contentType=json`;
+
   fetch(API_URL)
-    .then((response) => {
-      return response.json();
-    })
+    .then((response) => response.json())
     .then((data) => {
-      //currentLocation.textContent =
-      // data.address.charAt(0).toUpperCase() + data.address.slice(1);
-      console.log(data);
       return {
-        //current: parseCurrentWeather(data),
         zone: parseZoneWeather(data),
         hourly: parseHourlyWeather(data),
       };
     });
+}
+
+/*
+ * the function gets the current position of the user
+ */
+window.addEventListener("load", () => {
+  const geoLocation = navigator.geolocation;
+
+  if (geoLocation) {
+    geoLocation.getCurrentPosition(showLocation);
+  } else {
+    console.log("Please enable location in your browser");
+  }
 });
 
 /**
@@ -81,24 +115,28 @@ function renderIcons(iconCurrentDay) {
   }
 }
 
+/**
+ * the function render the hourly info of the forecast in the current location
+ *  *
+ * @param {data} - take the info of user's location
+ */
 function parseHourlyWeather(data) {
   const hourlySection = document.getElementById("hourlyWeather");
   hourlySection.innerHTML = "";
 
-  const hoursToShow = 7; // Número de horas a mostrar
+  const hoursToShow = 7;
   const totalHours = data.days[0].hours.length;
   const currentHour = new Date().getHours();
-  let startIndex = currentHour + 1; // Índice de inicio a partir de la siguiente hora actual
-  let endIndex = startIndex + hoursToShow; // Índice final
+  let startIndex = currentHour + 1;
+  let endIndex = startIndex + hoursToShow;
 
-  // Ajustar el índice final si se cruza al día siguiente
   if (endIndex > totalHours) {
     endIndex = endIndex % totalHours;
   }
 
   for (let i = startIndex; i !== endIndex; i++) {
     if (i >= totalHours) {
-      i = 0; // Reiniciar el índice al comienzo del día siguiente
+      i = 0;
     }
 
     const { datetime, conditions, temp, precipprob } = data.days[0].hours[i];
@@ -117,6 +155,15 @@ function parseHourlyWeather(data) {
   }
 }
 
+/**
+ * the function render the info and the icons of the weather for the next 8 hours in the current location
+ *  *
+ * @param {datetime} - take the element in the html document to give next hours
+ * @param {iconHourImg} - take the element in the html document to give the image of the weather
+ * @param {conditions} - take the element in the html document to give next conditions
+ * @param {temp} - take the element in the html document to give the next temperatures
+ * @param {precip} - take the element in the html document to give the next precipitations
+ */
 function renderNextHours(datetime, iconHourImg, conditions, temp, precip) {
   return `
     <div class="hourly_weather">

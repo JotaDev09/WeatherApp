@@ -1,0 +1,51 @@
+.legal_cont {
+    position: absolute;
+    top: 130px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.legal_info_cont {
+    width: 365px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.icons_title {
+    color: white;
+}
+
+.legal_inf_cont {
+    padding-top: 7px;
+    padding-bottom: 10px;
+}
+
+.legal_atribution {
+    color: white;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.list_style {
+    color: white;
+}
+
+.legal_weather_api {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.legal_icons {
+    color: white;
+}
+
+.legal_icons_web {
+    color: white;
+    text-decoration: none;
+}
+
+/*background icon menu*/
+.menu_back4 {
+    background: rgba(255, 255, 255, 0.3);
+}

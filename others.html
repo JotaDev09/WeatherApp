@@ -13,12 +13,14 @@
         rel="stylesheet" />
     <script src="/assets/js/script.js"></script>
     <script src="/assets/js/otherCities.js"></script>
+    <script src="/assets/js/includeHtml.js"></script>
 
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/mainstyle.css">
     <link rel="stylesheet" href="/assets/css/menu.css">
+    <link rel="stylesheet" href="/assets/css/others.css">
 </head>
 
-<body onload="otherCitiesInit(), getTime()">
+<body onload="getTime(), includeHTML()">
     <div class="main_contain">
         <!--Header time and settings -->
         <div class="header_contain">
@@ -30,8 +32,31 @@
             </div>
         </div>
         <!--Logo icon and return-->
-        <div w3-include-html="subHeader.html"></div>
-
+        <div w3-include-html="/assets/templates/subHeader.html"></div>
+        <!--section -->
+        <div class="legal_cont flex_column_center">
+            <div class="legal_info_cont">
+                <a class="legal_atribution font_Poppins_14px">Atribution</a>
+                <div class="legal_inf_cont">
+                    <a class="legal_weather_api font_Poppins_14px">Weather data on this website:</a><br>
+                    <ul>
+                        <li class="list_style">
+                            <a class="legal_weather_api" target="_blank"
+                                href="https://www.visualcrossing.com/">visualcrossing.com</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="legal_inf_cont">
+                    <a class="icons_title font_Poppins_14px">Icons used on this website:</a>
+                    <ul>
+                        <li class="list_style">
+                            <a class="legal_icons_web font_Poppins_14px" target="_blank"
+                                href="https://icons8.com">Icons8</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
         <div w3-include-html="assets/templates/menu.html"></div>
     </div>

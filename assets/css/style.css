@@ -1,134 +1,3 @@
-body {
-    margin: 0
-}
-
-.font_Poppins_12px {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 12px;
-}
-
-.font_Poppins_14px {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 14px;
-}
-
-.flex_column_center {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.menu_back1 {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-/*HOME SCREEN*/
-
-.main_contain {
-    position: relative;
-    width: 417px;
-    height: 872px;
-    background: linear-gradient(to bottom, rgb(42, 42, 121), rgb(115, 208, 238))
-}
-
-/* header */
-
-.header_contain {
-    position: absolute;
-    width: 387px;
-    height: 16px;
-    left: 15px;
-    right: 15px;
-    top: 10px;
-}
-
-.header_time {
-    position: absolute;
-    width: 22px;
-    height: 12px;
-    top: 12px;
-    color: #FFFFFF;
-}
-
-.header_settings {
-    position: absolute;
-    width: 57px;
-    height: 16px;
-    right: 1px;
-    top: 10px;
-    gap: 6px;
-}
-
-.header_icons {
-    width: 15px;
-    height: 15px;
-}
-
-.header_position {
-    position: absolute;
-    width: 387px;
-    height: 35px;
-    top: 60px;
-    margin-left: 13px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.header_left_icon {
-    width: 51px;
-    height: 35px;
-}
-
-.logo_icon {
-    width: 50px;
-    height: 34px;
-}
-
-.header_menu {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 35px;
-    height: 35px;
-    background: #6865A5;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.position_phone {
-    width: 37px;
-    height: 14px;
-    color: #ffffff;
-}
-
-.header_right_icon {
-    width: 35px;
-    height: 35px;
-}
-
-.header_refresh {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 35px;
-    height: 35px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.sub_header_title {
-    height: 12px;
-    font-size: 18px;
-    color: #FFFFFF;
-}
-
 /* Today's weather container*/
 .today_weather_container {
     position: absolute;
@@ -315,22 +184,26 @@ body {
     border-radius: 10px;
     display: flex;
     align-items: center;
+    cursor: pointer;
+}
+
+.other_cities_o {
+    cursor: pointer;
 }
 
 .new_city_img {
     width: 37px;
     height: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 6px;
+    padding-right: 6px;
 }
 
 .new_city_weather {
-    height: 30px;
-    width: 72px;
+    height: 44px;
+    width: 99px;
 }
 
 .new_city_name {
-    width: 36px;
     height: 15px;
     line-height: 15px;
     color: white;
@@ -339,7 +212,6 @@ body {
 }
 
 .new_city_descr {
-    width: 32px;
     height: 13px;
     font-size: 10px;
     line-height: 13px;
@@ -348,12 +220,11 @@ body {
 }
 
 .new_city_temp_cont {
-    padding-right: 12px;
+    padding-right: 7px;
     display: flex;
 }
 
 .new_city_temp {
-    width: 11px;
     height: 15px;
     font-size: 16px;
     line-height: 15px;
@@ -364,4 +235,9 @@ body {
 .new_city_ellipse {
     width: 4px;
     height: 4px;
+}
+
+/*background icon menu*/
+.menu_back1 {
+    background: rgba(255, 255, 255, 0.3);
 }

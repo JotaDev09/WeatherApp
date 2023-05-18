@@ -159,3 +159,8 @@
     width: 6px;
     height: 6px;
 }
+
+/*background icon menu*/
+.menu_back3 {
+    background: rgba(255, 255, 255, 0.3);
+}

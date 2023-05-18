@@ -15,12 +15,12 @@
     <script src="/assets/js/otherCities.js"></script>
     <script src="/assets/js/includeHtml.js"></script>
 
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/mainstyle.css">
     <link rel="stylesheet" href="/assets/css/menu.css">
     <link rel="stylesheet" href="/assets/css/otherCities.css">
 </head>
 
-<body onload="otherCitiesInit(), getTime(), subHeader()">
+<body onload="otherCitiesInit(), getTime()">
     <div class=" main_contain">
         <!--Header time and settings -->
         <div class="header_contain">
@@ -32,7 +32,7 @@
             </div>
         </div>
         <!--Logo icon and return-->
-        <div w3-include-html="subHeader.html"></div>
+        <div w3-include-html="/assets/templates/subHeader.html"></div>
         <!--Search other city-->
         <div class="search_city_container">
             <img src="assets/icons/lupeSmall.svg" class="search_lupe_img" onclick="searchCity()">
@@ -41,7 +41,6 @@
         <!--Container for searched cities-->
         <div class="searched_cities_container" id="searchedCitiesContainer">
         </div>
-
 
         <div w3-include-html="assets/templates/menu.html"></div>
     </div>

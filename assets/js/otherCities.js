@@ -8,6 +8,7 @@ const cloudyNight = "assets/img/cloudyNight.svg";
 const clearNight = "assets/img/night.png";
 
 let searchedCities = [];
+const cities = [];
 
 /*
  * the function init the necesary functions to load the otherCities site.
@@ -15,6 +16,7 @@ let searchedCities = [];
 function otherCitiesInit() {
   includeHTML();
   UpperCase();
+  loadCity();
 }
 
 /*
@@ -44,9 +46,8 @@ function searchCity() {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
       return {
-        searchedCity: parseCurrentsearchedCity(data),
+        cityNew: parseCurrentsearchedCity(data),
       };
     })
     .catch((err) => {
@@ -84,29 +85,31 @@ function renderIcons(iconWeather) {
  */
 function parseCurrentsearchedCity(data) {
   const newCity = document.getElementById("searchedCitiesContainer");
+
   const { icon, temp } = data.currentConditions;
   const city = data.address;
   const conditionsCity = icon;
   const temperatureCity = Math.round(((temp - 32) * 5) / 9);
   const iconWeather = renderIcons(data.currentConditions.icon);
 
-  searchedCities.push({
+  const cityObject = {
     city,
     conditionsCity,
     temperatureCity,
     iconWeather,
-  });
+  };
 
-  newCity.innerHTML = "";
+  cities.push(cityObject);
+  const saveCities = JSON.parse(localStorage.getItem("saveCities")) || [];
+  saveCities.push(cityObject);
+  localStorage.setItem("saveCities", JSON.stringify(saveCities));
 
-  searchedCities.forEach((city) => {
-    newCity.innerHTML += renderNewCity(
-      city.city,
-      city.conditionsCity,
-      city.temperatureCity,
-      city.iconWeather
-    );
-  });
+  newCity.innerHTML += renderNewCity(
+    city,
+    conditionsCity,
+    temperatureCity,
+    iconWeather
+  );
 
   document.getElementById("inputSearchCity").value = "";
 }
@@ -123,16 +126,54 @@ function renderNewCity(city, conditionsCity, temperatureCity, iconWeather) {
   return `
     <div class="searched_city_cont">
       <div class="searched_city_info_cont">
-          <div class="searched_city_info">
-              <a class="searched_city_name font_Poppins_14px" id="searchedCityName">${city}</a>
-              <a class="searched_city_weather font_Poppins_14px" id="searchedCityWeather">${conditionsCity}</a>
-          </div>
-          <div class="searched_city_info_cont2">
-              <a class="searched_city_temp font_Poppins_14px" id="searchedCityTemp">${temperatureCity}</a>
-              <img src="assets/icons/Ellipse.svg" class="searched_city_ellipse">
-          </div>
+      <div class="plus_minus_cont">
+        <a class="remove_city" onclick="removeCity('${city}')">-</a>
       </div>
+      <div class="searched_city_info">
+        <a class="searched_city_name font_Poppins_14px" id="searchedCityName">${city}</a>
+        <a class="searched_city_weather font_Poppins_14px" id="searchedCityWeather">${conditionsCity}</a>
+      </div> 
+        <div class="searched_city_info_cont2">
+        <a class="searched_city_temp font_Poppins_14px" id="searchedCityTemp">${temperatureCity}</a>
+        <img src="assets/icons/Ellipse.svg" class="searched_city_ellipse">
+      </div>
+    </div>
       <img class="searched_city_img" id="searchedCityImg" src="${iconWeather}" alt="${conditionsCity} icon">
     </div>
   `;
+}
+
+/**
+ * the function loads the saved cities on the localStorage
+ */
+function loadCity() {
+  const saveCities = JSON.parse(localStorage.getItem("saveCities")) || [];
+  const newCity = document.getElementById("searchedCitiesContainer");
+  newCity.innerHTML = "";
+
+  saveCities.forEach((city) => {
+    newCity.innerHTML += renderNewCity(
+      city.city,
+      city.conditionsCity,
+      city.temperatureCity,
+      city.iconWeather
+    );
+  });
+}
+
+/**
+ * the function removes a city from localStorage
+ *  *
+ * @param {city} - remove the object and his caracteristics from the array
+ */
+function removeCity(city) {
+  const saveCities = JSON.parse(localStorage.getItem("saveCities")) || [];
+  for (let i = 0; i < saveCities.length; i++) {
+    if (saveCities[i].city === city) {
+      saveCities.splice(i, 1);
+      break;
+    }
+  }
+  localStorage.setItem("saveCities", JSON.stringify(saveCities));
+  loadCity();
 }

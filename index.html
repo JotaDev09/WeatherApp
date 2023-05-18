@@ -11,8 +11,10 @@
         href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
         rel="stylesheet" />
     <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/otherCities.js"></script>
     <script src="/assets/js/includeHtml.js"></script>
 
+    <link rel="stylesheet" href="/assets/css/mainstyle.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/menu.css">
 </head>
@@ -82,43 +84,9 @@
         <div class="other_cities_temp">
             <div class="other_cities_text">
                 <a class="hours_info_text_a font_Poppins_12px">Other Cities</a>
-                <a class="hours_info_text_a font_Poppins_12px">+</a>
+                <a class="other_cities_o hours_info_text_a font_Poppins_12px" onclick="openOtherCities()">+</a>
             </div>
-            <div class="other_cities_cont">
-                <div class="new_city">
-                    <img src="/assets/img/cloudy.svg" class="new_city_img">
-                    <div class="new_city_weather">
-                        <p class="new_city_name font_Poppins_14px">Delhi</p>
-                        <p class="new_city_descr font_Poppins_12px">Sunny</p>
-                    </div>
-                    <div class="new_city_temp_cont">
-                        <p class="new_city_temp font_Poppins_12px">9</p>
-                        <img src="/assets/icons/Ellipse.svg" class="new_city_ellipse">
-                    </div>
-                </div>
-                <div class="new_city">
-                    <img src="/assets/img/cloudy.svg" class="new_city_img">
-                    <div class="new_city_weather">
-                        <p class="new_city_name font_Poppins_14px">Delhi</p>
-                        <p class="new_city_descr font_Poppins_12px">Sunny</p>
-                    </div>
-                    <div class="new_city_temp_cont">
-                        <p class="new_city_temp font_Poppins_12px">9</p>
-                        <img src="/assets/icons/Ellipse.svg" class="new_city_ellipse">
-                    </div>
-                </div>
-                <div class="new_city">
-                    <img src="/assets/img/cloudy.svg" class="new_city_img">
-                    <div class="new_city_weather">
-                        <p class="new_city_name font_Poppins_14px">Delhi</p>
-                        <p class="new_city_descr font_Poppins_12px">Sunny</p>
-                    </div>
-                    <div class="new_city_temp_cont">
-                        <p class="new_city_temp font_Poppins_12px">9</p>
-                        <img src="/assets/icons/Ellipse.svg" class="new_city_ellipse">
-                    </div>
-                </div>
-            </div>
+            <div class="other_cities_cont" id="arrayCitiesCont"></div>
         </div>
         <div w3-include-html="assets/templates/menu.html"></div>
     </div>
@@ -128,8 +96,7 @@
     <script src="/assets/js/weatherApi.js" type="module"></script>
     <!--IMPORTANT!!-->
     <!--<a href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
-    <a target="_blank" href="https://icons8.com/icon/7695/suche">Suche</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
-    <a target="_blank" href="https://icons8.com/icon/7705/hineinzoomen">Hineinzoomen</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+   
 -->
 
 

@@ -55,13 +55,34 @@
     align-items: center;
 }
 
+.plus_minus_cont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: red;
+    height: 24px;
+    width: 24px;
+    border-radius: 15px;
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+.plus_minus_cont:hover {
+    opacity: 1;
+}
+
+.remove_city {
+    color: white;
+    padding-bottom: 4px;
+    font-size: 30px;
+}
+
 .searched_city_info_cont {
     width: 295px;
     height: 90px;
     background: rgba(255, 255, 255, 0.3);
     border-radius: 15px;
     display: flex;
-    gap: 15px;
 }
 
 .searched_city_info {
@@ -69,7 +90,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: 34px;
+    padding-left: 15px;
 }
 
 .searched_city_name {
@@ -110,4 +131,9 @@
 .searched_city_ellipse {
     width: 10px;
     height: 35px;
+}
+
+/*background icon menu*/
+.menu_back2 {
+    background: rgba(255, 255, 255, 0.3);
 }

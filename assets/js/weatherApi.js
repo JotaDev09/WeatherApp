@@ -41,12 +41,10 @@ function showLocation(position) {
     .then((response) => response.json())
     .then((data) => {
       const cityName = data.timezone.split("/")[1];
-      console.log("Ciudad:", cityName);
-
       fetchWeatherData(cityName);
     })
     .catch((error) => {
-      console.log("Error al obtener la información de ubicación:", error);
+      console.log("Error retrieving location information:", error);
     });
 }
 
@@ -61,7 +59,6 @@ function fetchWeatherData(cityName) {
     .then((data) => {
       currentLocation.textContent =
         data.address.charAt(0).toUpperCase() + data.address.slice(1);
-      console.log(data);
       return {
         current: parseCurrentWeather(data),
         daily: parseDailyWeather(data),
@@ -78,7 +75,7 @@ window.addEventListener("load", () => {
   if (geoLocation) {
     geoLocation.getCurrentPosition(showLocation);
   } else {
-    console.log("La geolocalización no está disponible en este navegador.");
+    alert("Please enable location in your browser");
   }
 });
 
@@ -134,7 +131,7 @@ function renderIcons(iconCurrentDay) {
 function parseDailyWeather(data) {
   dailySection.innerHTML = "";
   for (let i = 0; i < 7; i++) {
-    const { datetime, temp } = data.days[i];
+    const { datetime, tempmax } = data.days[i];
 
     // Split the datetime string into an array and reverse it to get year, month, day order
     const dateArray = datetime.split("-").reverse();
@@ -142,7 +139,11 @@ function parseDailyWeather(data) {
     const formattedDate = `${day}/${month}`;
 
     const iconDayImg = renderIconsNextDays(data.days[i].icon);
-    dailySection.innerHTML += renderNextDays(formattedDate, temp, iconDayImg);
+    dailySection.innerHTML += renderNextDays(
+      formattedDate,
+      tempmax,
+      iconDayImg
+    );
 
     const nextDayImg = document.getElementById("daysWeather");
     nextDayImg.src = iconDayImg;
@@ -178,17 +179,17 @@ function renderIconsNextDays(iconWeather) {
  * the function render the info and the icons of the weather for the next 6 days in the current location
  *  *
  * @param {formattedDate} - take the element in the html document to give the exact date
- * @param {temp} - take the element in the html document to give the temperature
+ * @param {tempmax} - take the element in the html document to give the maxim temperature
  * @param {iconDayImg} - take the element in the html document to give the image
  */
-function renderNextDays(formattedDate, temp, iconDayImg) {
+function renderNextDays(formattedDate, tempmax, iconDayImg) {
   return `
   <div class="hour_weather flex_column_center">
     <a class="days_hour font_Poppins_12px" id="nextDay">${formattedDate}</a>
     <img src="${iconDayImg}" class="days_weather" id="daysWeather">
     <div class="days_temp_cont">
       <a class="days_temp font_Poppins_12px" id="nextDayTemp">${Math.trunc(
-        temp
+        tempmax
       )}</a>
       <img src="/assets/icons/Ellipse.svg" class="hours_ellipse">
     </div>

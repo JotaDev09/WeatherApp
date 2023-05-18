@@ -32,7 +32,7 @@ function initHome() {
   getTime();
   getCompleteDate();
   includeHTML();
-  subHeader();
+  loadCities();
 }
 
 /*
@@ -109,10 +109,51 @@ function getCompleteDate() {
     dayString + monthString + hourString + minutesString;
 }
 
-function subHeader() {
-  let subHeader = document.getElementById("subHeaderTitle");
-  if (document.location.pathname === "OtherCities") {
-    console.log("title");
-    subHeader.textContent = "Search for City";
-  }
+/**
+ * the function loads the saved cities on the localStorage
+ *
+ */
+function loadCities() {
+  const saveCities = JSON.parse(localStorage.getItem("saveCities")) || [];
+
+  const arrayCities = document.getElementById("arrayCitiesCont");
+  arrayCities.innerHTML = "";
+
+  saveCities.forEach((city) => {
+    arrayCities.innerHTML += renderCitiesOfArray(
+      city.city,
+      city.conditionsCity,
+      city.temperatureCity,
+      city.iconWeather
+    );
+  });
+}
+
+/**
+ * the function render the info and the icons of the cities from the localStorage
+ *  *
+ * @param {city} - take the element in the html document to give the image
+ * @param {conditionsCity} - take the element in the html document to give the image
+ * @param {temperatureCity} - take the element in the html document to give the image
+ * @param {iconWeather} - take the element in the html document to give the image
+ */
+function renderCitiesOfArray(
+  city,
+  conditionsCity,
+  temperatureCity,
+  iconWeather
+) {
+  return `
+  <div class="new_city" onclick="openOtherCities()">
+      <img src="/assets/img/cloudy.svg" class="new_city_img">
+      <div class="new_city_weather">
+        <p class="new_city_name font_Poppins_14px">${city}</p>
+        <p class="new_city_descr font_Poppins_12px">${conditionsCity}</p>
+      </div>
+      <div class="new_city_temp_cont">
+        <p class="new_city_temp font_Poppins_12px">${temperatureCity}</p>
+        <img src=${iconWeather} class="new_city_ellipse">
+      </div>
+  </div>
+`;
 }
