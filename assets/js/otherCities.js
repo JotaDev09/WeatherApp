@@ -116,7 +116,7 @@ function parseCurrentsearchedCity(data) {
 
 /**
  * the function render the info and the icons of the weather in the wished city
- *  *
+ *
  * @param {city} - take the element in the html document to give the image
  * @param {conditionsCity} - take the element in the html document to give the image
  * @param {temperatureCity} - take the element in the html document to give the image
