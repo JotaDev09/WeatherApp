@@ -146,13 +146,13 @@
 
 .days_temp {
     height: 18px;
-    line-height: 18px;
+    line-height: 16px;
     color: white;
 }
 
 .hours_ellipse {
-    width: 2px;
-    height: 2px;
+    width: 4px;
+    height: 4px;
 }
 
 /*Today's other cities temperature*/
