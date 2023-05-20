@@ -145,14 +145,14 @@ function renderCitiesOfArray(
 ) {
   return `
   <div class="new_city" onclick="openOtherCities()">
-      <img src="/assets/img/cloudy.svg" class="new_city_img">
+      <img src="${iconWeather}" class="new_city_img">
       <div class="new_city_weather">
         <p class="new_city_name font_Poppins_14px">${city}</p>
         <p class="new_city_descr font_Poppins_12px">${conditionsCity}</p>
       </div>
       <div class="new_city_temp_cont">
         <p class="new_city_temp font_Poppins_12px">${temperatureCity}</p>
-        <img src=${iconWeather} class="new_city_ellipse">
+        <img src="assets/icons/Ellipse.svg" class="new_city_ellipse">
       </div>
   </div>
 `;
