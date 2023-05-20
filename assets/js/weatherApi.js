@@ -191,7 +191,7 @@ function renderNextDays(formattedDate, tempmax, iconDayImg) {
       <a class="days_temp font_Poppins_12px" id="nextDayTemp">${Math.trunc(
         tempmax
       )}</a>
-      <img src="/assets/icons/Ellipse.svg" class="hours_ellipse">
+      <img src="assets/icons/Ellipse.svg" class="hours_ellipse">
     </div>
   </div>
   `;
